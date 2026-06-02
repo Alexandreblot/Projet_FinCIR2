@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinCIR2 - Accueil</title>
+    <link rel="stylesheet" href="../CSS/css.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <img class="logo-icon" src="../Image/logo.png" alt="Logo FinCIR2">
+        </div>
+        <div class="navbar-links">
+            <a href="#" class="nav-btn1">Accueil</a>
+            <a href="#" class="nav-btn1">Services</a>
+            <a href="#" class="nav-btn1">À propos</a>
+            <a href="#" class="nav-btn2">Connexion</a>
+        </div>
+    </nav>
+
+    <!-- Section Héro -->
+    <section class="hero">
+        <img class="hero-bg" src="../Image/hero-bg.jpg" alt="Fond héro">
+        <div class="hero-overlay"></div>
+        <h1>Bienvenue sur FinCIR2</h1>
+        <p>Votre plateforme de gestion financière</p>
+    </section>
+
+    <!-- Contenu principal -->
+    <main>
+        <section class="container">
+            <h2>Nos services</h2>
+            <p>Contenu à ajouter ici...</p>
+        </section>
+    </main>
+
+    <!-- Pied de page -->
+    <footer>
+        <p>&copy; 2026 FinCIR2. Tous droits réservés.</p>
+    </footer>
+
+    <script src="../JavaScript/js.js"></script>
+</body>
+</html>
