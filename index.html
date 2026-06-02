@@ -3,34 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PDC-Elec - Navigation</title>
+    <title>Zapkartenn - Navigation</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="CSS/Index.css" />
     <link rel="stylesheet" href="CSS/Navbar.css" />
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
+
+    <script src="JavaScript/Navbar.js" defer></script>
   </head>
   <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <img
-            src="Image/PDC-elec.png"
-            alt="Logo PDC-Elec"
-            class="logo-icon"
-          />
-        </div>
-        <ul class="nav navbar-nav">
-          <li><a href="#" class="nav-btn1">Carte</a></li>
-          <li><a href="#" class="nav-btn1">Recherche</a></li>
-          <li><a href="#" class="nav-btn2">Connexion</a></li>
-        </ul>
-      </div>
-    </nav>
-  </body>
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <img
+        src="Image/logo_zapkartenn.png"
+        alt="Logo"
+        class="logo-icon"
+      />
+</div>
+<button class="menu-toggle" id="menu-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+    </button>
+    <ul class="nav navbar-nav" id="menu">
+      <li><a href="#" class="nav-btn1">Carte</a></li>
+      <li><a href="#" class="nav-btn1">Recherche</a></li>
+      <li><a href="#" class="nav-btn2"><img src="Image/avatar-de-connexion.png" class="Connexion" />Connexion</a></li>
+    </ul>
+  </div>
+</nav>
   <section class="hero">
     <img src="Image/voiture-elec.png" class="hero-bg" />
     <div class="hero-overlay"></div>
-    <img src="Image/PDC-elec.png" alt="Logo PDC-Elec" class="hero-logo" />
+    <img src="Image/logo_zapkartenn.png" alt="Logo logo_zapkartenn" class="hero-logo" />
     <a href="#" class="hero-btn">Voir la carte</a>
     <a href="#" class="hero-btn">Faite votre recherche</a>
   </section>
+    </body>
 </html>
