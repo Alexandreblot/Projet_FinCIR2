@@ -9,50 +9,6 @@ body {
   background-color: #f0f0f0;
 }
 
-/* ── NavBar ── */
-.navbar {
-  display: flex;
-  background-color: #7dd9cf;
-  width: 100%;
-  padding: 8px 24px;
-  min-height: 70px;
-  align-items: center;
-}
-
-.logo-icon {
-  width: 150px;
-  height: auto;
-}
-
-.Connexion {
-  width: 15px;
-  height: auto;
-}
-
-.nav-btn1 {
-  display: inline-block;
-  color: #000000;
-  text-decoration: none;
-  font-size: 18px;
-  font-weight: 500;
-  padding: 12px 20px;
-  border-radius: 20px;
-  white-space: nowrap;
-}
-
-.nav-btn2 {
-  display: inline-block;
-  background-color: #ffffff;
-  color: #000000;
-  text-decoration: none;
-  font-size: 18px;
-  font-weight: 500;
-  padding: 12px 20px;
-  border-radius: 20px;
-  transition: background-color 0.2s ease;
-  white-space: nowrap;
-}
-
 .hero {
   position: relative;
   height: 400px;
@@ -64,8 +20,10 @@ body {
 }
 .hero-bg {
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   opacity: 0.4;
   z-index: 0;
@@ -73,8 +31,10 @@ body {
 
 .hero-overlay {
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 1;
 }
@@ -98,8 +58,11 @@ body {
   padding: 12px 32px;
   border-radius: 25px;
   transition: background-color 0.2s ease;
+  text-decoration: none !important;
+  outline: none !important;
 }
 
 .hero-btn:hover {
   background-color: #ef4444;
 }
+

@@ -1,0 +1,46 @@
+.navbar {
+  display: flex;
+  background-color: #7dd9cf;
+  width: 100%;
+  padding: 8px 24px;
+  min-height: 70px;
+  align-items: center;
+}
+
+.logo-icon {
+  width: 150px;
+  height: auto;
+}
+
+.Connexion {
+  width: 15px;
+  height: auto;
+}
+
+.nav-btn1 {
+  display: inline-block;
+  color: #000000;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 12px 20px;
+  border-radius: 20px;
+  white-space: nowrap;
+  text-decoration: none !important;
+  outline: none !important;
+}
+
+.nav-btn2 {
+  display: inline-block;
+  background-color: #ffffff;
+  color: #000000;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 12px 20px;
+  border-radius: 20px;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+  text-decoration: none !important;
+  outline: none !important;
+}
