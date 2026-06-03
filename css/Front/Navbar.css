@@ -4,11 +4,15 @@ body {
   padding: 0 !important;
 }
 
+body {
+  padding-top: 70px;
+}
+
 
 
 .navbar {
   display: flex;
-  background-color: #D29FE4;
+  background-color: #90e9da;
   width: 100%;
   padding: 8px 24px;
   min-height: 70px;
@@ -35,7 +39,8 @@ body {
 }
 
 .nav.navbar-nav {
-  display: flex;
+  display: flex !important;
+  flex-direction: row !important;
   align-items: center;
   gap: 12px;
   margin: 0;
@@ -140,7 +145,7 @@ body {
     top: 70px;
     left: 0;
     width: 100%;
-    background: #D29FE4;
+    background: #90e9da;
     padding: 10px 0;
     z-index: 1000;
   }
