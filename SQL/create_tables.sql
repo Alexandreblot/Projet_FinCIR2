@@ -1,6 +1,4 @@
--- ============================================
 -- Création de la base de données ZapKartenn
--- ============================================
 
 CREATE DATABASE IF NOT EXISTS zapkartenn
     CHARACTER SET utf8mb4
@@ -71,7 +69,6 @@ CREATE TABLE IF NOT EXISTS POINT_DE_CHARGE (
     paiement           TEXT,
     tarification       TEXT,
 
-    -- Clé étrangère
     id_station         VARCHAR(100),
 
     CONSTRAINT fk_pdc_station
@@ -79,7 +76,7 @@ CREATE TABLE IF NOT EXISTS POINT_DE_CHARGE (
         ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
--- Table de liaison OPERE (0,n — 1,n)
+-- Table de liaison OPERE
 CREATE TABLE IF NOT EXISTS OPERE (
     id_pdc        INT NOT NULL,
     id_operateur  INT NOT NULL,

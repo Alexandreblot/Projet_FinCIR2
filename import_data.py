@@ -1,16 +1,14 @@
 import csv
 import mysql.connector
 
-# ── Connexion ──────────────────────────────────────────
 conn = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="",  # Sans mot de passe pour XAMPP
+    password="",
     database="zapkartenn"
 )
 cursor = conn.cursor()
 
-# ── Utilitaires ────────────────────────────────────────
 def safe_int(val):
     """Convertit en int ou retourne None."""
     try:
@@ -31,9 +29,7 @@ def safe_decimal(val):
     except:
         return None
 
-# ════════════════════════════════════════════════════════
-# 1. IMPORT COMMUNES (Utilise le point-virgule)
-# ════════════════════════════════════════════════════════
+# IMPORT COMMUNE
 print("Import des communes...")
 with open('communes-france-2024-limite.csv', encoding='utf-8') as f:
     reader = csv.DictReader(f, delimiter=';')
@@ -57,13 +53,11 @@ with open('communes-france-2024-limite.csv', encoding='utf-8') as f:
 conn.commit()
 print(f"  → {len(communes_existantes)} communes insérées")
 
-# ════════════════════════════════════════════════════════
-# 2. IMPORT IRVE (Utilise la virgule)
-# ════════════════════════════════════════════════════════
+# IMPORT IRVE
 print("Import des données IRVE...")
 
-amenageurs_vus   = {}  # siren → True
-operateurs_vus   = {}  # nom → id_operateur
+amenageurs_vus   = {}
+operateurs_vus   = {}
 stations_existantes = set()
 nb_stations_inserees = 0
 nb_pdc = 0
@@ -73,7 +67,6 @@ with open('irve_init.csv', encoding='utf-8') as f:
     
     for row in reader:
 
-        # ── AMÉNAGEUR ─────────────────────────────────
         siren = row.get('siren_amenageur', '').strip()
         if siren and siren not in amenageurs_vus:
             cursor.execute("""
@@ -86,7 +79,6 @@ with open('irve_init.csv', encoding='utf-8') as f:
             ))
             amenageurs_vus[siren] = True
 
-        # ── OPÉRATEUR ─────────────────────────────────
         nom_op = row.get('nom_operateur', '').strip()
         id_operateur = None
         if nom_op:
@@ -102,14 +94,12 @@ with open('irve_init.csv', encoding='utf-8') as f:
                 operateurs_vus[nom_op] = cursor.lastrowid
             id_operateur = operateurs_vus.get(nom_op)
 
-        # ── STATION ───────────────────────────────────
         id_station = row.get('id_station_itinerance', '').strip()
         if not id_station:
             id_station = row.get('id_station_local', '').strip()
             
         code_insee = row.get('code_insee_commune', '').strip()
         
-        # SÉCURITÉ : Si le code INSEE du CSV n'existe pas dans la table COMMUNE, on met None
         if code_insee and code_insee not in communes_existantes:
             code_insee = None
 
@@ -145,10 +135,8 @@ with open('irve_init.csv', encoding='utf-8') as f:
                     nb_stations_inserees += 1
                 except Exception as e:
                     print(f"Erreur lors de l'insertion de la station {id_station}: {e}")
-                    continue  # Passer à la ligne suivante si la station échoue réellement
+                    continue
 
-            # ── POINT DE CHARGE ───────────────────────────
-            # SÉCURITÉ : On n'insère le PDC QUE si sa station parente a bien été validée/insérée
             if id_station in stations_existantes:
                 prise_ef_val = 1 if safe_bool(row.get('prise_type_ef', '')) else 0
                 prise_t2_val = 1 if safe_bool(row.get('prise_type_2', '')) else 0
@@ -173,7 +161,6 @@ with open('irve_init.csv', encoding='utf-8') as f:
                 id_pdc = cursor.lastrowid
                 nb_pdc += 1
 
-                # ── OPERE (liaison PDC ↔ Opérateur) ──────────
                 if id_pdc and id_operateur:
                     cursor.execute("""
                         INSERT IGNORE INTO OPERE (id_pdc, id_operateur)
