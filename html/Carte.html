@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zapkartenn - Navigation</title>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="../CSS/carte.css" />
+    <link rel="stylesheet" href="../CSS/Navbar.css" />
+    <link rel="stylesheet" href="../CSS/Footer.css" />
+
+    <script src="../JavaScript/Navbar.js" defer></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a href="../index.html">
+            <img
+              src="../Image/logo_zapkartenn.png"
+              alt="Logo"
+              class="logo-icon"
+            />
+          </a>
+        </div>
+        <button class="menu-toggle" id="menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="nav navbar-nav" id="menu">
+          <li><a href="Carte.html" class="nav-btn1">Carte</a></li>
+          <li><a href="Recherche.html" class="nav-btn1">Recherche</a></li>
+          <li>
+            <a href="#" class="nav-btn2"
+              ><img
+                src="../Image/avatar-de-connexion.png"
+                class="Connexion"
+              />Connexion</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="carte-page">
+      <div class="carte-grid">
+        <aside class="carte-sidebar">
+          <h2>Recherche</h2>
+          <div class="filter-card">
+            <label for="departement">Département</label>
+            <select id="departement">
+              <option value="">Choisir</option>
+              <option value="29">Finistère</option>
+              <option value="22">Côtes-d'Armor</option>
+              <option value="35">Ille-et-Vilaine</option>
+              <option value="56">Morbihan</option>
+            </select>
+          </div>
+          <div class="filter-card">
+            <label for="annee-installation">Année d'installation</label>
+            <select id="annee-installation">
+              <option value="">Choisir</option>
+              <option>2026</option>
+              <option>2025</option>
+              <option>2024</option>
+              <option>2023</option>
+              <option>2022</option>
+              <option>2021</option>
+            </select>
+          </div>
+          <div class="filter-card">
+            <label for="type-prix">Type de prise</label>
+            <select id="type-prix">
+              <option value="">Choisir</option>
+              <option>Type 2</option>
+              <option>CCS</option>
+              <option>CHAdeMO</option>
+            </select>
+          </div>
+        </aside>
+
+        <main class="map-panel">
+          <div id="map"></div>
+        </main>
+
+        <aside class="info-panel">
+          <div class="info-header">Informations :</div>
+          <div class="info-body">
+            <p>
+              Sélectionnez un point sur la carte pour afficher ses informations.
+            </p>
+            <ul>
+              <li>Adresse</li>
+              <li>Nombre de prises</li>
+              <li>Type de connecteur</li>
+              <li>Disponibilité</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <p>2026 Zapkartenn. Nathan & Alexandre - CIR2</p>
+      </div>
+    </footer>
+
+    <script>
+      const map = L.map("map").setView([48.8566, 2.3522], 11);
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "&copy; OpenStreetMap contributors",
+        maxZoom: 19,
+      }).addTo(map);
+      L.marker([48.8566, 2.3522])
+        .addTo(map)
+        .bindPopup("Exemple de point de recharge à Paris")
+        .openPopup();
+    </script>
+  </body>
+</html>
