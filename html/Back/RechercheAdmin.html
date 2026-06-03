@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zapkartenn - Recherche</title>
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="../../CSS/Front/Index.css" />
+    <link rel="stylesheet" href="../../CSS/Back/NavbarAdmin.css" />
+    <link rel="stylesheet" href="../../CSS/Front/recherche.css" />
+    <link rel="stylesheet" href="../../CSS/Back/FooterAdmin.css" />
+    <script src="../../JavaScript/Front/Navbar.js" defer></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a href="AcceuilAdmin.html">
+            <img
+              src="../../Image/logo_zapkartenn.png"
+              alt="Logo"
+              class="logo-icon"
+            />
+          </a>
+        </div>
+        <button class="menu-toggle" id="menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="nav navbar-nav" id="menu">
+          <li><a href="Creation.html" class="nav-btn1">Nouveau PDR</a></li>
+          <li><a href="RechercheAdmin.html" class="nav-btn1">Recherche</a></li>
+          <li>
+            <a href="../../index.html" class="nav-btn2"
+              ><img
+                src="../../Image/avatar-de-connexion.png"
+                class="Connexion"
+              />Déconnexion</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="search-page container">
+      <section class="search-header">
+        <h1>Recherche des bornes</h1>
+        <p>Filtrer par aménageur, type de prise et département.</p>
+      </section>
+
+      <section class="filter-area">
+        <div class="filter-card">
+          <label for="amenageur">Aménageur</label>
+          <select id="amenageur" class="form-control">
+            <option value="">Tous les aménageurs</option>
+            <option value="enedis">Enedis</option>
+            <option value="rte">RTE</option>
+            <option value="zewatt">Zewatt</option>
+          </select>
+        </div>
+        <div class="filter-card">
+          <label for="prise">Type de prise</label>
+          <select id="prise" class="form-control">
+            <option value="">Tous les types</option>
+            <option value="type2">Type 2</option>
+            <option value="chademo">CHAdeMO</option>
+            <option value="ccs">CCS</option>
+          </select>
+        </div>
+        <div class="filter-card">
+          <label for="departement">Département</label>
+          <select id="departement" class="form-control">
+            <option value="">Tous les départements</option>
+            <option value="75">75 - Paris</option>
+            <option value="69">69 - Rhône</option>
+            <option value="34">34 - Hérault</option>
+            <option value="33">33 - Gironde</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="validate-area text-center">
+        <button class="btn btn-primary btn-validate">Valider</button>
+      </section>
+
+      <section class="search-table-wrapper">
+        <table class="table search-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Prises</th>
+              <th>Puissance</th>
+              <th>Lieu</th>
+              <th>Nb points</th>
+              <th>Détails</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2026-05-01</td>
+              <td>Type 2</td>
+              <td>22 kW</td>
+              <td>Paris 1</td>
+              <td>2</td>
+              <td>
+                <button class="btn btn-danger btn-sm">Supprimer</button>
+                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+              </td>
+            </tr>
+            <tr>
+              <td>2026-05-02</td>
+              <td>CCS</td>
+              <td>33 kW</td>
+              <td>Paris 2</td>
+              <td>3</td>
+              <td>
+                <button class="btn btn-danger btn-sm">Supprimer</button>
+                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+              </td>
+            </tr>
+            <tr>
+              <td>2026-05-03</td>
+              <td>CHAdeMO</td>
+              <td>44 kW</td>
+              <td>Paris 3</td>
+              <td>1</td>
+              <td>
+                <button class="btn btn-danger btn-sm">Supprimer</button>
+                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+              </td>
+            </tr>
+            <tr>
+              <td>2026-05-04</td>
+              <td>Type 2</td>
+              <td>22 kW</td>
+              <td>Paris 4</td>
+              <td>2</td>
+              <td>
+                <button class="btn btn-danger btn-sm">Supprimer</button>
+                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+              </td>
+            </tr>
+            <tr>
+              <td>2026-05-05</td>
+              <td>CCS</td>
+              <td>44 kW</td>
+              <td>Paris 5</td>
+              <td>3</td>
+              <td>
+                <button class="btn btn-danger btn-sm">Supprimer</button>
+                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+              </td>
+            </tr>
+            <tr>
+              <td>2026-05-06</td>
+              <td>CHAdeMO</td>
+              <td>22 kW</td>
+              <td>Paris 6</td>
+              <td>1</td>
+              <td>
+                <button class="btn btn-danger btn-sm">Supprimer</button>
+                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+              </td>
+            </tr>
+            <tr>
+              <td>2026-05-07</td>
+              <td>Type 2</td>
+              <td>33 kW</td>
+              <td>Paris 7</td>
+              <td>2</td>
+              <td>
+                <button class="btn btn-danger btn-sm">Supprimer</button>
+                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+              </td>
+            </tr>
+            <tr>
+              <td>2026-05-08</td>
+              <td>CCS</td>
+              <td>22 kW</td>
+              <td>Paris 8</td>
+              <td>3</td>
+              <td>
+                <button class="btn btn-danger btn-sm">Supprimer</button>
+                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+              </td>
+            </tr>
+            <tr>
+              <td>2026-05-09</td>
+              <td>CHAdeMO</td>
+              <td>44 kW</td>
+              <td>Paris 9</td>
+              <td>1</td>
+              <td>
+                <button class="btn btn-danger btn-sm">Supprimer</button>
+                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+              </td>
+            </tr>
+            <tr>
+              <td>2026-05-10</td>
+              <td>Type 2</td>
+              <td>33 kW</td>
+              <td>Paris 10</td>
+              <td>2</td>
+              <td>
+                <button class="btn btn-danger btn-sm">Supprimer</button>
+                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+              </td>
+            </tr>
+            <tr>
+              <td>2026-05-11</td>
+              <td>CCS</td>
+              <td>22 kW</td>
+              <td>Paris 11</td>
+              <td>3</td>
+              <td>
+                <button class="btn btn-danger btn-sm">Supprimer</button>
+                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+              </td>
+            </tr>
+            <tr>
+              <td>2026-05-12</td>
+              <td>CHAdeMO</td>
+              <td>44 kW</td>
+              <td>Paris 12</td>
+              <td>1</td>
+              <td>
+                <button class="btn btn-danger btn-sm">Supprimer</button>
+                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+              </td>
+            </tr>
+            <tr>
+              <td>2026-05-13</td>
+              <td>Type 2</td>
+              <td>22 kW</td>
+              <td>Paris 13</td>
+              <td>2</td>
+              <td>
+                <button class="btn btn-danger btn-sm">Supprimer</button>
+                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+              </td>
+            </tr>
+            <tr>
+              <td>2026-05-14</td>
+              <td>CCS</td>
+              <td>33 kW</td>
+              <td>Paris 14</td>
+              <td>3</td>
+              <td>
+                <button class="btn btn-danger btn-sm">Supprimer</button>
+                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+              </td>
+            </tr>
+            <tr>
+              <td>2026-05-15</td>
+              <td>CHAdeMO</td>
+              <td>22 kW</td>
+              <td>Paris 15</td>
+              <td>1</td>
+              <td>
+                <button class="btn btn-danger btn-sm">Supprimer</button>
+                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+              </td>
+            </tr>
+            <tr>
+              <td>2026-05-16</td>
+              <td>Type 2</td>
+              <td>44 kW</td>
+              <td>Paris 16</td>
+              <td>2</td>
+              <td>
+                <button class="btn btn-danger btn-sm">Supprimer</button>
+                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+              </td>
+            </tr>
+            <tr>
+              <td>2026-05-17</td>
+              <td>CCS</td>
+              <td>22 kW</td>
+              <td>Paris 17</td>
+              <td>3</td>
+              <td>
+                <button class="btn btn-danger btn-sm">Supprimer</button>
+                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+              </td>
+            </tr>
+            <tr>
+              <td>2026-05-18</td>
+              <td>CHAdeMO</td>
+              <td>33 kW</td>
+              <td>Paris 18</td>
+              <td>1</td>
+              <td>
+                <button class="btn btn-danger btn-sm">Supprimer</button>
+                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+              </td>
+            </tr>
+            <tr>
+              <td>2026-05-19</td>
+              <td>Type 2</td>
+              <td>44 kW</td>
+              <td>Paris 19</td>
+              <td>2</td>
+              <td>
+                <button class="btn btn-danger btn-sm">Supprimer</button>
+                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+              </td>
+            </tr>
+            <tr>
+              <td>2026-05-20</td>
+              <td>CCS</td>
+              <td>22 kW</td>
+              <td>Paris 20</td>
+              <td>3</td>
+              <td>
+                <button class="btn btn-danger btn-sm">Supprimer</button>
+                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <p>2026 Zapkartenn. Nathan & Alexandre - CIR2</p>
+      </div>
+    </footer>
+  </body>
+</html>
