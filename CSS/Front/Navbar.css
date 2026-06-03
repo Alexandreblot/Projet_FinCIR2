@@ -4,6 +4,10 @@ body {
   padding: 0 !important;
 }
 
+body {
+  padding-top: 70px;
+}
+
 
 
 .navbar {
@@ -35,7 +39,8 @@ body {
 }
 
 .nav.navbar-nav {
-  display: flex;
+  display: flex !important;
+  flex-direction: row !important;
   align-items: center;
   gap: 12px;
   margin: 0;
