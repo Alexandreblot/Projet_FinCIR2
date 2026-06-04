@@ -1,0 +1,159 @@
+html,
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body {
+  padding-top: 70px;
+}
+
+.navbar {
+  display: flex;
+  background-color: #d29fe4;
+  width: 100%;
+  padding: 8px 24px;
+  min-height: 70px;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-fluid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.navbar-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  width: 150px;
+  height: auto;
+}
+
+.nav.navbar-nav {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav.navbar-nav li {
+  display: flex;
+}
+
+.Connexion {
+  width: 15px;
+  height: auto;
+  margin-right: 8px;
+  margin-top: 0px;
+}
+
+.nav-btn1 {
+  display: flex;
+  align-items: center;
+  color: #000000;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 8px 20px;
+  border-radius: 20px;
+  white-space: nowrap;
+  text-decoration: none !important;
+  outline: none !important;
+}
+
+.nav-btn2 {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  color: #000000;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 8px 20px;
+  border-radius: 24px;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+  text-decoration: none !important;
+  outline: none !important;
+}
+
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 24px;
+  height: 3px;
+  background: #000;
+  margin: 4px 0;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-icon {
+    width: 90px;
+    height: auto;
+  }
+
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    background: transparent;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .nav.navbar-nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: #d29fe4;
+    padding: 10px 0;
+    z-index: 1000;
+  }
+
+  .nav.navbar-nav.open {
+    display: flex;
+  }
+
+  .nav.navbar-nav li {
+    list-style: none;
+    text-align: center;
+    margin: 8px 0;
+  }
+
+  .nav.navbar-nav li a {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    text-decoration: none;
+    color: black;
+  }
+}
