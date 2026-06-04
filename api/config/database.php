@@ -29,4 +29,7 @@ class Database {
         return $this->conn;
     }
 }
+
+$db = new Database();
+$conn = $db->getConnection();
 ?>

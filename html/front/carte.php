@@ -110,7 +110,7 @@
     </footer>
 
     <script>
-      const map = L.map("map").setView([46.5, 2.5], 5.8);
+      const map = L.map("map").setView([47.4812803926876406, -2.063379999999999], 7);
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: "&copy; OpenStreetMap contributors",
         maxZoom: 19,
