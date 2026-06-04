@@ -1,3 +1,25 @@
+<?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+?>
+<?php
+include_once __DIR__ . '/../../api/config/database.php';
+$stations = [];
+if (isset($conn) && $conn) {
+  try {
+    $stmt = $conn->query("
+  SELECT latitude, longitude, nom_station, adresse, raccordement, horaires, implantation, date_mise_en_service
+  FROM STATION 
+  WHERE latitude IS NOT NULL AND longitude IS NOT NULL
+");
+    $stations = $stmt->fetchAll();
+  } catch (Exception $e) {
+    echo "<!-- Erreur SQL : " . $e->getMessage() . " -->";
+  }
+} else {
+  echo "<!-- Connexion BDD échouée -->";
+}
+?>
 <!doctype html>
 <html lang="fr">
   <head>
@@ -78,16 +100,17 @@
         </main>
 
         <aside class="info-panel">
-          <div class="info-header">Informations :</div>
+          <div class="info-header" id="nom-station">Informations :</div>
           <div class="info-body">
-            <p>
+            <p id="info-placeholder">
               Sélectionnez un point sur la carte pour afficher ses informations.
             </p>
             <ul>
-              <li>Adresse</li>
-              <li>Nombre de prises</li>
-              <li>Type de connecteur</li>
-              <li>Disponibilité</li>
+              <li id="raccordement">Raccordement</li>
+              <li id="adresse">Adresse</li>
+              <li id="horaires">Horaires</li>
+              <li id="date_mise_en_service">Date de mise en service</li>
+              <li id="implantation">implantation</li>
             </ul>
           </div>
         </aside>
@@ -98,20 +121,7 @@
       <div class="footer-content">
         <p>2026 Zapkartenn. Nathan & Alexandre - CIR2</p>
       </div>
-    </footer>
-
-<?php
-include_once __DIR__ . '/../../api/config/database.php';
-$stations = [];
-if (isset($conn) && $conn) {
-  try {
-    $stmt = $conn->query("SELECT latitude, longitude, nom_station, adresse FROM STATION");
-    $stations = $stmt->fetchAll();
-  } catch (Exception $e) {
-    $stations = [];
-  }
-}
-?>
+    </footer> 
 
     <script>
       const map = L.map("map").setView([47.2, -3], 7);
@@ -119,12 +129,25 @@ if (isset($conn) && $conn) {
         attribution: "&copy; OpenStreetMap contributors",
         maxZoom: 19,
       }).addTo(map);
-
-<?php foreach ($stations as $s): ?>
-      L.marker([<?= (float)$s['latitude'] ?>, <?= (float)$s['longitude'] ?>]).addTo(map)
-        .bindPopup(<?= json_encode('<strong>' . ($s['nom_station'] ?? 'Borne') . '</strong><br>' . ($s['adresse'] ?? '')) ?>);
-<?php endforeach; ?>
-
     </script>
+
+    <?php foreach ($stations as $s): ?>
+    <script>
+      (() => {
+        const marker = L.marker([<?= (float)$s['latitude'] ?>, <?= (float)$s['longitude'] ?>]).addTo(map);
+        marker.bindPopup(<?= json_encode('<strong>' . ($s['nom_station'] ?? 'Borne') . '</strong>') ?>);
+        marker.on('click', () => {
+          document.getElementById('info-placeholder').style.display = 'none';
+          document.getElementById('nom-station').textContent = 'Informations : ' + <?= json_encode($s['nom_station'] ?? 'Borne') ?>;
+          document.getElementById('raccordement').textContent = 'Raccordement : ' + <?= json_encode($s['raccordement'] ?? 'N/A') ?>;
+          document.getElementById('adresse').textContent = 'Adresse : ' + <?= json_encode($s['adresse'] ?? 'N/A') ?>;
+          document.getElementById('horaires').textContent = 'Horaires : ' + <?= json_encode($s['horaires'] ?? 'N/A') ?>;
+          document.getElementById('date_mise_en_service').textContent = 'Date de mise en service : ' + <?= json_encode($s['date_mise_en_service'] ?? 'N/A') ?>;
+          document.getElementById('implantation').textContent = 'implantation : ' + <?= json_encode($s['implantation'] ?? 'N/A') ?>;
+        });
+      })();
+    </script>
+    <?php endforeach; ?>
+
   </body>
 </html>
