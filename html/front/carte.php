@@ -105,7 +105,7 @@ include_once __DIR__ . '/../../api/config/database.php';
 $stations = [];
 if (isset($conn) && $conn) {
   try {
-    $stmt = $conn->query("SELECT latitude, longitude, nom FROM STATION");
+    $stmt = $conn->query("SELECT latitude, longitude, nom_station, adresse FROM STATION");
     $stations = $stmt->fetchAll();
   } catch (Exception $e) {
     $stations = [];
@@ -114,15 +114,15 @@ if (isset($conn) && $conn) {
 ?>
 
     <script>
-      const map = L.map("map").setView([47.4812803926876406, -2.063379999999999], 7);
+      const map = L.map("map").setView([47.2, -3], 7);
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: "&copy; OpenStreetMap contributors",
         maxZoom: 19,
       }).addTo(map);
 
-5<?php foreach ($stations as $s): ?>
+<?php foreach ($stations as $s): ?>
       L.marker([<?= (float)$s['latitude'] ?>, <?= (float)$s['longitude'] ?>]).addTo(map)
-        .bindPopup(<?= json_encode($s['nom'] ?? 'Borne de recharge.') ?>);
+        .bindPopup(<?= json_encode('<strong>' . ($s['nom_station'] ?? 'Borne') . '</strong><br>' . ($s['adresse'] ?? '')) ?>);
 <?php endforeach; ?>
 
     </script>

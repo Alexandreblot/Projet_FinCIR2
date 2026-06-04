@@ -1,15 +1,13 @@
 <?php
 class Database {
-    // informations de connexion
     private $host = "127.0.0.1";
-    private $port = "3307";
+    private $port = "3306";
     private $db_name = "zapkartenn";
     private $username = "root";
     private $password = "";
     
     public $conn;
 
-    // ouvrir la connexion
     public function getConnection() {
         $this->conn = null;
 
