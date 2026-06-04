@@ -71,15 +71,6 @@
               <option>2021</option>
             </select>
           </div>
-          <div class="filter-card">
-            <label for="type-prix">Type de prise</label>
-            <select id="type-prix">
-              <option value="">Choisir</option>
-              <option>Type 2</option>
-              <option>CCS</option>
-              <option>CHAdeMO</option>
-            </select>
-          </div>
         </aside>
 
         <main class="map-panel">
@@ -109,12 +100,31 @@
       </div>
     </footer>
 
+<?php
+include_once __DIR__ . '/../../api/config/database.php';
+$stations = [];
+if (isset($conn) && $conn) {
+  try {
+    $stmt = $conn->query("SELECT latitude, longitude, nom FROM STATION");
+    $stations = $stmt->fetchAll();
+  } catch (Exception $e) {
+    $stations = [];
+  }
+}
+?>
+
     <script>
       const map = L.map("map").setView([47.4812803926876406, -2.063379999999999], 7);
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: "&copy; OpenStreetMap contributors",
         maxZoom: 19,
       }).addTo(map);
+
+5<?php foreach ($stations as $s): ?>
+      L.marker([<?= (float)$s['latitude'] ?>, <?= (float)$s['longitude'] ?>]).addTo(map)
+        .bindPopup(<?= json_encode($s['nom'] ?? 'Borne de recharge.') ?>);
+<?php endforeach; ?>
+
     </script>
   </body>
 </html>
