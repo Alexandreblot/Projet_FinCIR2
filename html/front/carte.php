@@ -115,67 +115,6 @@
         attribution: "&copy; OpenStreetMap contributors",
         maxZoom: 19,
       }).addTo(map);
-
-      const stationInfo = document.getElementById("station-info");
-
-      function showInfo(message) {
-        stationInfo.innerHTML = `<p>${message}</p>`;
-      }
-
-      function formatBoolean(value) {
-        return value && value !== "0" ? "Oui" : "Non";
-      }
-
-      function updateStationInfo(station) {
-        stationInfo.innerHTML = `
-          <h3>${station.nom_station || 'Station inconnue'}</h3>
-          <p><strong>Adresse :</strong> ${station.adresse || 'N/A'}</p>
-          <p><strong>Points de charge :</strong> ${station.nb_points || 0}</p>
-          <p><strong>Type CCS :</strong> ${formatBoolean(station.prise_type_ccs)}</p>
-          <p><strong>Type CHAdeMO :</strong> ${formatBoolean(station.chademo)}</p>
-          <p><strong>Gratuit :</strong> ${formatBoolean(station.gratuit)}</p>
-          <p><strong>Mis en service :</strong> ${station.date_mise_en_service || 'N/A'}</p>
-        `;
-      }
-
-      showInfo('Chargement des bornes en cours...');
-
-      fetch("../../api/routes/stations.php")
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error('Erreur HTTP ' + response.status);
-          }
-          return response.json();
-        })
-        .then((stations) => {
-          if (!Array.isArray(stations) || stations.length === 0) {
-            showInfo('Aucune borne de recharge trouvée.');
-            return;
-          }
-
-          stations.forEach((station) => {
-            const lat = parseFloat(station.latitude);
-            const lon = parseFloat(station.longitude);
-            if (Number.isNaN(lat) || Number.isNaN(lon)) {
-              return;
-            }
-
-            const marker = L.marker([lat, lon]).addTo(map);
-            const popupContent = `
-              <strong>${station.nom_station || 'Station'}</strong><br />
-              ${station.adresse || ''}<br />
-              Points : ${station.nb_points || 0}
-            `;
-            marker.bindPopup(popupContent);
-            marker.on('click', () => updateStationInfo(station));
-          });
-
-          showInfo('Cliquez sur un point pour voir les détails de la station.');
-        })
-        .catch((error) => {
-          console.error(error);
-          showInfo('Impossible de charger les bornes depuis la base de données.');
-        });
     </script>
   </body>
 </html>
