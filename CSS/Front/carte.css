@@ -1,4 +1,7 @@
 /* Page carte */
+body {
+  font-family: Arial, sans-serif;
+}
 .carte-page {
   position: relative;
   min-height: calc(100vh - 70px);
