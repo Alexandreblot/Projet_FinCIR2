@@ -15,7 +15,7 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a href="acceuil_admin.html">
+          <a href="acceuil_admin.php">
             <img
               src="../../image/logo_zapkartenn.png"
               alt="Logo"
@@ -30,11 +30,11 @@
         </button>
         <ul class="nav navbar-nav" id="menu">
           <li>
-            <a href="creation.html" class="nav-btn1">Nouveau PDR</a>
+            <a href="creation.php" class="nav-btn1">Nouveau PDR</a>
           </li>
-          <li><a href="recherche_admin.html" class="nav-btn1">Recherche</a></li>
+          <li><a href="recherche_admin.php" class="nav-btn1">Recherche</a></li>
           <li>
-            <a href="../../index.html" class="nav-btn2"
+            <a href="../../index.php" class="nav-btn2"
               ><img
                 src="../../image/avatar-de-connexion.png"
                 class="Connexion"

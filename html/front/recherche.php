@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Zapkartenn - Recherche</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../../css/back/navbar_admin.css" />
+    <link rel="stylesheet" href="../../css/front/index.css" />
+    <link rel="stylesheet" href="../../css/front/navbar.css" />
     <link rel="stylesheet" href="../../css/front/recherche.css" />
-    <link rel="stylesheet" href="../../css/back/footer_admin.css" />
+    <link rel="stylesheet" href="../../css/front/footer.css" />
     <script src="../../javascript/front/navbar.js" defer></script>
   </head>
   <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a href="acceuil_admin.html">
+          <a href="../../index.php">
             <img
               src="../../image/logo_zapkartenn.png"
               alt="Logo"
@@ -28,15 +29,15 @@
           <span></span>
         </button>
         <ul class="nav navbar-nav" id="menu">
-          <li><a href="creation.html" class="nav-btn1">Nouveau PDR</a></li>
-          <li><a href="recherche_admin.html" class="nav-btn1">Recherche</a></li>
+          <li><a href="carte.php" class="nav-btn1">Carte</a></li>
+          <li><a href="recherche.php" class="nav-btn1">Recherche</a></li>
           <li>
-            <a href="../../index.html" class="nav-btn2"
-              ><img
+            <a href="../back/acceuil_admin.php" class="nav-btn2">
+              <img
                 src="../../image/avatar-de-connexion.png"
                 class="Connexion"
-              />Déconnexion</a
-            >
+              />Connexion
+            </a>
           </li>
         </ul>
       </div>
@@ -103,8 +104,7 @@
               <td>Paris 1</td>
               <td>2</td>
               <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+                <a href="details.php" class="btn btn-outline-info btn-sm">Détails</a>
               </td>
             </tr>
             <tr>
@@ -114,8 +114,7 @@
               <td>Paris 2</td>
               <td>3</td>
               <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+                <a href="details.php" class="btn btn-outline-info btn-sm">Détails</a>
               </td>
             </tr>
             <tr>
@@ -125,8 +124,7 @@
               <td>Paris 3</td>
               <td>1</td>
               <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+                <a href="details.php" class="btn btn-outline-info btn-sm">Détails</a>
               </td>
             </tr>
             <tr>
@@ -136,8 +134,7 @@
               <td>Paris 4</td>
               <td>2</td>
               <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+                <a href="details.php" class="btn btn-outline-info btn-sm">Détails</a>
               </td>
             </tr>
             <tr>
@@ -147,8 +144,7 @@
               <td>Paris 5</td>
               <td>3</td>
               <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+                <a href="details.php" class="btn btn-outline-info btn-sm">Détails</a>
               </td>
             </tr>
             <tr>
@@ -158,8 +154,7 @@
               <td>Paris 6</td>
               <td>1</td>
               <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+                <a href="details.php" class="btn btn-outline-info btn-sm">Détails</a>
               </td>
             </tr>
             <tr>
@@ -169,8 +164,7 @@
               <td>Paris 7</td>
               <td>2</td>
               <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+                <a href="details.php" class="btn btn-outline-info btn-sm">Détails</a>
               </td>
             </tr>
             <tr>
@@ -180,8 +174,7 @@
               <td>Paris 8</td>
               <td>3</td>
               <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+                <a href="details.php" class="btn btn-outline-info btn-sm">Détails</a>
               </td>
             </tr>
             <tr>
@@ -191,8 +184,7 @@
               <td>Paris 9</td>
               <td>1</td>
               <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+                <a href="details.php" class="btn btn-outline-info btn-sm">Détails</a>
               </td>
             </tr>
             <tr>
@@ -202,8 +194,7 @@
               <td>Paris 10</td>
               <td>2</td>
               <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+                <a href="details.php" class="btn btn-outline-info btn-sm">Détails</a>
               </td>
             </tr>
             <tr>
@@ -213,8 +204,7 @@
               <td>Paris 11</td>
               <td>3</td>
               <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+                <a href="details.php" class="btn btn-outline-info btn-sm">Détails</a>
               </td>
             </tr>
             <tr>
@@ -224,8 +214,7 @@
               <td>Paris 12</td>
               <td>1</td>
               <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+                <a href="details.php" class="btn btn-outline-info btn-sm">Détails</a>
               </td>
             </tr>
             <tr>
@@ -235,8 +224,7 @@
               <td>Paris 13</td>
               <td>2</td>
               <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+                <a href="details.php" class="btn btn-outline-info btn-sm">Détails</a>
               </td>
             </tr>
             <tr>
@@ -246,8 +234,7 @@
               <td>Paris 14</td>
               <td>3</td>
               <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+                <a href="details.php" class="btn btn-outline-info btn-sm">Détails</a>
               </td>
             </tr>
             <tr>
@@ -257,8 +244,7 @@
               <td>Paris 15</td>
               <td>1</td>
               <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+                <a href="details.php" class="btn btn-outline-info btn-sm">Détails</a>
               </td>
             </tr>
             <tr>
@@ -268,8 +254,7 @@
               <td>Paris 16</td>
               <td>2</td>
               <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+                <a href="details.php" class="btn btn-outline-info btn-sm">Détails</a>
               </td>
             </tr>
             <tr>
@@ -279,8 +264,7 @@
               <td>Paris 17</td>
               <td>3</td>
               <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+                <a href="details.php" class="btn btn-outline-info btn-sm">Détails</a>
               </td>
             </tr>
             <tr>
@@ -290,8 +274,7 @@
               <td>Paris 18</td>
               <td>1</td>
               <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+                <a href="details.php" class="btn btn-outline-info btn-sm">Détails</a>
               </td>
             </tr>
             <tr>
@@ -301,8 +284,7 @@
               <td>Paris 19</td>
               <td>2</td>
               <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+                <a href="details.php" class="btn btn-outline-info btn-sm">Détails</a>
               </td>
             </tr>
             <tr>
@@ -312,8 +294,7 @@
               <td>Paris 20</td>
               <td>3</td>
               <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.html" class="btn btn-success btn-sm">Modifier</a>
+                <a href="details.php" class="btn btn-outline-info btn-sm">Détails</a>
               </td>
             </tr>
           </tbody>

@@ -18,7 +18,7 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a href="acceuil_admin.html">
+          <a href="acceuil_admin.php">
             <img
               src="../../image/logo_zapkartenn.png"
               alt="Logo"
@@ -33,11 +33,11 @@
         </button>
         <ul class="nav navbar-nav" id="menu">
           <li>
-            <a href="creation.html" class="nav-btn1">Nouveau PDR</a>
+            <a href="creation.php" class="nav-btn1">Nouveau PDR</a>
           </li>
-          <li><a href="recherche_admin.html" class="nav-btn1">Recherche</a></li>
+          <li><a href="recherche_admin.php" class="nav-btn1">Recherche</a></li>
           <li>
-            <a href="../../index.html" class="nav-btn2"
+            <a href="../../index.php" class="nav-btn2"
               ><img
                 src="../../image/avatar-de-connexion.png"
                 class="Connexion"
@@ -48,7 +48,7 @@
       </div>
     </nav>
     <main class="container" style="padding: 120px 24px 40px">
-      <h2>Creation d'un point de recharge :</h2>
+      <h2>Modifier un point de recharge :</h2>
       <form
         id="modification-form"
         method="post"
@@ -65,28 +65,28 @@
         >
           <div>
             <label>Nom station :</label>
-            <input name="nom" class="form-control" value="" />
+            <input name="nom" class="form-control" value="Camping Pendruc" />
           </div>
           <div>
             <label>Nom opérateur :</label>
-            <input name="operateur" class="form-control" value="" />
+            <input name="operateur" class="form-control" value="OUEST CHARGE" />
           </div>
           <div>
             <label>Enseigne :</label>
-            <input name="enseigne" class="form-control" value="" />
+            <input name="enseigne" class="form-control" value="SPV COM" />
           </div>
 
           <div>
             <label>Horaires :</label>
-            <input name="horaires" class="form-control" value="" />
+            <input name="horaires" class="form-control" value="8:00 - 18:30" />
           </div>
           <div>
             <label>Tarif (€/kWh) :</label>
-            <input name="tarif" class="form-control" value="" />
+            <input name="tarif" class="form-control" value="0.45" />
           </div>
           <div>
             <label>ID :</label>
-            <input name="id" class="form-control" value="" readonly />
+            <input name="id" class="form-control" value="57690" readonly />
           </div>
 
           <div>
@@ -99,16 +99,20 @@
           </div>
           <div>
             <label>Longitude :</label>
-            <input name="longitude" class="form-control" value="" />
+            <input name="longitude" class="form-control" value="-3.8800" />
           </div>
           <div>
             <label>Latitude :</label>
-            <input name="latitude" class="form-control" value="" />
+            <input name="latitude" class="form-control" value="43.8400" />
           </div>
 
           <div style="grid-column: 1 / span 2">
             <label>Adresse :</label>
-            <input name="adresse" class="form-control" value="" />
+            <input
+              name="adresse"
+              class="form-control"
+              value="11 Rue de la Trémouille"
+            />
           </div>
         </div>
 

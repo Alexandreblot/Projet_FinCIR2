@@ -15,7 +15,7 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a href="index.html">
+          <a href="index.php">
             <img src="image/logo_zapkartenn.png" alt="Logo" class="logo-icon" />
           </a>
         </div>
@@ -25,10 +25,10 @@
           <span></span>
         </button>
         <ul class="nav navbar-nav" id="menu">
-          <li><a href="html/front/carte.html" class="nav-btn1">Carte</a></li>
-          <li><a href="html/front/recherche.html" class="nav-btn1">Recherche</a></li>
+          <li><a href="html/front/carte.php" class="nav-btn1">Carte</a></li>
+          <li><a href="html/front/recherche.php" class="nav-btn1">Recherche</a></li>
           <li>
-            <a href="html/back/acceuil_admin.html" class="nav-btn2"
+            <a href="html/back/acceuil_admin.php" class="nav-btn2"
               ><img
                 src="image/avatar-de-connexion.png"
                 class="Connexion"
