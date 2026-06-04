@@ -114,7 +114,7 @@ if (isset($conn) && $conn) {
 ?>
 
     <script>
-      const map = L.map("map").setView([47.2, -3], 7);
+      const map = L.map("map").setView([48, -2.7], 8);
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: "&copy; OpenStreetMap contributors",
         maxZoom: 19,
