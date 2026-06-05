@@ -1,11 +1,9 @@
 window.addEventListener("DOMContentLoaded", function() {
 
-
     var selectDept = document.getElementById("select-departement");
     var selectAmenageur = document.getElementById("select-amenageur");
     var boutonRechercher = document.getElementById("btn-rechercher");
     var corpsTableau = document.getElementById("corps-tableau");
-
 
 
     fetch("../../api/routes/filtres.php?type=departements")
@@ -41,6 +39,7 @@ window.addEventListener("DOMContentLoaded", function() {
         });
 
 
+
     if (boutonRechercher != null) {
         boutonRechercher.addEventListener("click", function(evenement) {
             evenement.preventDefault();
@@ -56,6 +55,7 @@ window.addEventListener("DOMContentLoaded", function() {
                 })
                 .then(function(listeStations) {
                     
+                    console.log("Données reçues de l'API :", listeStations);
                     corpsTableau.innerHTML = "";
 
                     if (listeStations.length == 0) {
@@ -82,7 +82,9 @@ window.addEventListener("DOMContentLoaded", function() {
 
                         var colAction = document.createElement("td");
                         var lienDetails = document.createElement("a");
-                        lienDetails.href = "details.php?id=" + uneStation.id;
+                        
+                        lienDetails.href = "details.php?id=" + uneStation.id_station;
+                        
                         lienDetails.className = "btn btn-info btn-sm";
                         lienDetails.innerText = "Voir détails";
                         colAction.appendChild(lienDetails);

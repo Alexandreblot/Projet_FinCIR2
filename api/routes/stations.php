@@ -18,9 +18,9 @@ if (isset($_GET['amenageur'])) {
 
 try {
     if ($filtreDepartement != "" && $filtreAmenageur != "") {
-        $sql = "SELECT S.id, S.nom_enseigne, S.adresse, C.nom, C.dep_nom 
+        $sql = "SELECT S.id_station, S.nom_enseigne, S.adresse, C.nom, C.dep_nom 
                 FROM STATION S
-                JOIN COMMUNE C ON S.id_commune = C.id
+                JOIN COMMUNE C ON S.code_insee = C.code_insee
                 WHERE C.dep_nom = :dept AND S.nom_enseigne = :amenageur
                 LIMIT 50";
         
@@ -31,9 +31,9 @@ try {
         ]);
     } 
     else if ($filtreDepartement != "" && $filtreAmenageur == "") {
-        $sql = "SELECT S.id, S.nom_enseigne, S.adresse, C.nom, C.dep_nom 
+        $sql = "SELECT S.id_station, S.nom_enseigne, S.adresse, C.nom, C.dep_nom 
                 FROM STATION S
-                JOIN COMMUNE C ON S.id_commune = C.id
+                JOIN COMMUNE C ON S.code_insee = C.code_insee
                 WHERE C.dep_nom = :dept
                 LIMIT 50";
         
@@ -43,9 +43,9 @@ try {
         ]);
     } 
     else if ($filtreDepartement == "" && $filtreAmenageur != "") {
-        $sql = "SELECT S.id, S.nom_enseigne, S.adresse, C.nom, C.dep_nom 
+        $sql = "SELECT S.id_station, S.nom_enseigne, S.adresse, C.nom, C.dep_nom 
                 FROM STATION S
-                JOIN COMMUNE C ON S.id_commune = C.id
+                JOIN COMMUNE C ON S.code_insee = C.code_insee
                 WHERE S.nom_enseigne LIKE :amenageur
                 LIMIT 50";
         
@@ -55,9 +55,9 @@ try {
         ]);
     } 
     else {
-        $sql = "SELECT S.id, S.nom_enseigne, S.adresse, C.nom, C.dep_nom 
+        $sql = "SELECT S.id_station, S.nom_enseigne, S.adresse, C.nom, C.dep_nom 
                 FROM STATION S
-                JOIN COMMUNE C ON S.id_commune = C.id
+                JOIN COMMUNE C ON S.code_insee = C.code_insee
                 LIMIT 50";
         
         $stmt = $db->prepare($sql);
@@ -67,7 +67,7 @@ try {
     $stationsTrouvees = $stmt->fetchAll();
 
     if (count($stationsTrouvees) == 0 && $filtreDepartement == "") {
-        $sql = "SELECT id, nom_enseigne, adresse, 'Ville non renseignée' AS nom, 'Bretagne' AS dep_nom 
+        $sql = "SELECT id_station, nom_enseigne, adresse, 'Bretagne' AS nom, 'Département' AS dep_nom 
                 FROM STATION 
                 LIMIT 50";
         $stmt = $db->prepare($sql);
