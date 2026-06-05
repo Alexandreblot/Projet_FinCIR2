@@ -8,11 +8,31 @@ $stations = [];
 if (isset($conn) && $conn) {
   try {
     $stmt = $conn->query("
-  SELECT s.latitude, s.longitude, s.nom_station, s.adresse, s.raccordement, 
-         s.horaires, s.implantation, s.date_mise_en_service, c.dep_nom
+  SELECT s.id_station,
+         s.latitude,
+         s.longitude,
+         s.nom_station,
+         s.adresse,
+         s.raccordement,
+         s.horaires,
+         s.implantation,
+         s.date_mise_en_service,
+         c.dep_nom,
+         MAX(p.puissance_nominale) AS puissance_max
   FROM STATION s
   LEFT JOIN COMMUNE c ON s.code_insee = c.code_insee
+  LEFT JOIN POINT_DE_CHARGE p ON s.id_station = p.id_station
   WHERE s.latitude IS NOT NULL AND s.longitude IS NOT NULL
+  GROUP BY s.id_station,
+           s.latitude,
+           s.longitude,
+           s.nom_station,
+           s.adresse,
+           s.raccordement,
+           s.horaires,
+           s.implantation,
+           s.date_mise_en_service,
+           c.dep_nom
 ");
     $stations = $stmt->fetchAll();
   } catch (Exception $e) {
@@ -100,11 +120,13 @@ if (isset($conn) && $conn) {
             </p>
             <ul>
               <li id="raccordement">Raccordement</li>
+              <li id="puissance">Puissance</li>
               <li id="adresse">Adresse</li>
               <li id="horaires">Horaires</li>
               <li id="date_mise_en_service">Date de mise en service</li>
               <li id="implantation">implantation</li>
             </ul>
+            <a id="details-link" class="btn btn-primary" href="#" style="display:none; margin-top: 12px;">Voir détails</a>
           </div>
         </aside>
       </div>

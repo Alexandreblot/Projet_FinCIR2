@@ -1,5 +1,4 @@
 window.addEventListener("DOMContentLoaded", function () {
-
   var markersLayer = L.layerGroup().addTo(map);
 
   function afficherMarqueurs(liste) {
@@ -8,16 +7,38 @@ window.addEventListener("DOMContentLoaded", function () {
     liste.forEach(function (s) {
       var marker = L.marker([parseFloat(s.latitude), parseFloat(s.longitude)]);
 
-      marker.bindPopup("<strong>" + (s.nom_station || "Borne") + "</strong>");
+      var popupContent = "<strong>" + (s.nom_station || "Borne") + "</strong>";
+      marker.bindPopup(popupContent);
 
       marker.on("click", function () {
         document.getElementById("info-placeholder").style.display = "none";
-        document.getElementById("nom-station").textContent ="Informations : " + (s.nom_station || "Borne");
-        document.getElementById("raccordement").textContent ="Raccordement : " + (s.raccordement || "N/A");
-        document.getElementById("adresse").textContent ="Adresse : " + (s.adresse || "N/A");
-        document.getElementById("horaires").textContent ="Horaires : " + (s.horaires || "N/A");
-        document.getElementById("date_mise_en_service").textContent ="Date de mise en service : " + (s.date_mise_en_service || "N/A");
-        document.getElementById("implantation").textContent ="Implantation : " + (s.implantation || "N/A");
+        document.getElementById("nom-station").textContent =
+          "Informations : " + (s.nom_station || "Borne");
+
+        document.getElementById("raccordement").textContent =
+          "Raccordement : " + (s.raccordement || "N/A");
+        document.getElementById("puissance").textContent =
+          "Puissance : " + (s.puissance_max ? s.puissance_max + " kW" : "N/A");
+        document.getElementById("adresse").textContent =
+          "Adresse : " + (s.adresse || "N/A");
+        document.getElementById("horaires").textContent =
+          "Horaires : " + (s.horaires || "N/A");
+        document.getElementById("date_mise_en_service").textContent =
+          "Date de mise en service : " + (s.date_mise_en_service || "N/A");
+        document.getElementById("implantation").textContent =
+          "Implantation : " + (s.implantation || "N/A");
+
+        var detailsLink = document.getElementById("details-link");
+        if (detailsLink) {
+          var stationId = s.id_station || s.id;
+          if (stationId) {
+            detailsLink.href =
+              "details.php?id=" + encodeURIComponent(stationId);
+            detailsLink.style.display = "inline-block";
+          } else {
+            detailsLink.style.display = "none";
+          }
+        }
       });
       markersLayer.addLayer(marker);
     });
@@ -46,10 +67,6 @@ window.addEventListener("DOMContentLoaded", function () {
     .getElementById("annee-installation")
     .addEventListener("change", filtrerEtAfficher);
 
-
-
-
-    
   var selectDept = document.getElementById("departement");
   if (selectDept) {
     fetch("../../api/routes/filtres.php?type=departements")
