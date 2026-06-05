@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../css/front/index.css" />
 
     <script src="../../javascript/front/navbar.js" defer></script>
+    <script src="../../javascript/front/accueil.js" defer></script>
   </head>
   <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -44,45 +45,42 @@
         </ul>
       </div>
     </nav>
-    <section class="hero">
+     <section class="hero">
       <img src="../../image/voiture-elec.png" class="hero-bg" />
       <div class="hero-overlay"></div>
-      <img
-        src="../../image/logo_zapkartenn.png"
-        alt="Logo logo_zapkartenn"
-        class="hero-logo"
-      />
+      <img src="../../image/logo_zapkartenn.png" alt="Logo logo_zapkartenn" class="hero-logo" />
       <h1 class="hero-titre">
         Trouver des points de recharges de véhicules électriques en Bretagne
       </h1>
+      
       <div class="statistics">
         <div class="stats-grid">
+          
           <article class="stat-card">
-            <div class="stat-number">N/A</div>
-            <div class="stat-label">Nombre d’enregistrements en base</div>
+            <div class="stat-number"><span id="compteur-pdc">0</span></div>
+            <div class="stat-label">Nombre d'enregistrements en base</div>
           </article>
+
           <article class="stat-card">
-            <div class="stat-number">N/A</div>
-            <div class="stat-label">Nombre de points par années</div>
+            <div class="stat-number"><span id="compteur-stations">0</span></div>
+            <div class="stat-label">Nombre de stations</div>
           </article>
+
           <article class="stat-card">
-            <div class="stat-number">N/A</div>
-            <div class="stat-label">Nombre de points par département</div>
+            <div class="stat-number"><span id="compteur-communes">0</span></div>
+            <div class="stat-label">Nombre de communes couvertes</div>
           </article>
+
           <article class="stat-card">
-            <div class="stat-number">N/A</div>
-            <div class="stat-label">
-              Nombre de points par années et par département
-            </div>
+            <div class="stat-number"><span id="compteur-amenageurs">0</span></div>
+            <div class="stat-label">Nombre d'aménageurs</div>
           </article>
+
           <article class="stat-card">
-            <div class="stat-number">N/A</div>
-            <div class="stat-label">Nombre d’aménageurs</div>
+            <div class="stat-number"><span id="compteur-operateurs">0</span></div>
+            <div class="stat-label">Nombre d'opérateurs</div>
           </article>
-          <article class="stat-card">
-            <div class="stat-number">N/A</div>
-            <div class="stat-label">Nombre de types de prise (nbre_pdc)</div>
-          </article>
+
         </div>
       </div>
     </section>

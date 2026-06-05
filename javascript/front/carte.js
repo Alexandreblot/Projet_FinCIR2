@@ -12,21 +12,14 @@ window.addEventListener("DOMContentLoaded", function () {
 
       marker.on("click", function () {
         document.getElementById("info-placeholder").style.display = "none";
-        document.getElementById("nom-station").textContent =
-          "Informations : " + (s.nom_station || "Borne");
+        document.getElementById("nom-station").textContent ="Informations : " + (s.nom_station || "Borne");
 
-        document.getElementById("raccordement").textContent =
-          "Raccordement : " + (s.raccordement || "N/A");
-        document.getElementById("puissance").textContent =
-          "Puissance : " + (s.puissance_max ? s.puissance_max + " kW" : "N/A");
-        document.getElementById("adresse").textContent =
-          "Adresse : " + (s.adresse || "N/A");
-        document.getElementById("horaires").textContent =
-          "Horaires : " + (s.horaires || "N/A");
-        document.getElementById("date_mise_en_service").textContent =
-          "Date de mise en service : " + (s.date_mise_en_service || "N/A");
-        document.getElementById("implantation").textContent =
-          "Implantation : " + (s.implantation || "N/A");
+        document.getElementById("raccordement").textContent ="Raccordement : " + (s.raccordement || "N/A");
+        document.getElementById("puissance").textContent ="Puissance : " + (s.puissance_max ? s.puissance_max + " kW" : "N/A");
+        document.getElementById("adresse").textContent ="Adresse : " + (s.adresse || "N/A");
+        document.getElementById("horaires").textContent ="Horaires : " + (s.horaires || "N/A");
+        document.getElementById("date_mise_en_service").textContent ="Date de mise en service : " + (s.date_mise_en_service || "N/A");
+        document.getElementById("implantation").textContent ="Implantation : " + (s.implantation || "N/A");
 
         var detailsLink = document.getElementById("details-link");
         if (detailsLink) {
