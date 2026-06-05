@@ -34,6 +34,16 @@ try {
         $requete = $db->query($sql);
         $listeResultats = $requete->fetchAll();
     }
+    
+    else if ($typeDemande == "annees") {
+        $sql = "SELECT DISTINCT YEAR(date_mise_en_service) AS annee
+                FROM STATION 
+                WHERE date_mise_en_service IS NOT NULL AND YEAR(date_mise_en_service) > 0
+                ORDER BY annee DESC";
+        
+        $requete = $db->query($sql);
+        $listeResultats = $requete->fetchAll();
+    }
 
     http_response_code(200);
     echo json_encode($listeResultats);

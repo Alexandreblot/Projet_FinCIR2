@@ -8,9 +8,11 @@ $stations = [];
 if (isset($conn) && $conn) {
   try {
     $stmt = $conn->query("
-  SELECT latitude, longitude, nom_station, adresse, raccordement, horaires, implantation, date_mise_en_service
-  FROM STATION 
-  WHERE latitude IS NOT NULL AND longitude IS NOT NULL
+  SELECT s.latitude, s.longitude, s.nom_station, s.adresse, s.raccordement, 
+         s.horaires, s.implantation, s.date_mise_en_service, c.dep_nom
+  FROM STATION s
+  LEFT JOIN COMMUNE c ON s.code_insee = c.code_insee
+  WHERE s.latitude IS NOT NULL AND s.longitude IS NOT NULL
 ");
     $stations = $stmt->fetchAll();
   } catch (Exception $e) {
@@ -34,6 +36,7 @@ if (isset($conn) && $conn) {
 
     <script src="../../javascript/front/navbar.js" defer></script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="../../javascript/front/carte.js" defer></script>
   </head>
   <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -75,22 +78,12 @@ if (isset($conn) && $conn) {
             <label for="departement">Département</label>
             <select id="departement">
               <option value="">Choisir</option>
-              <option value="29">Finistère</option>
-              <option value="22">Côtes-d'Armor</option>
-              <option value="35">Ille-et-Vilaine</option>
-              <option value="56">Morbihan</option>
             </select>
           </div>
           <div class="filter-card">
             <label for="annee-installation">Année d'installation</label>
             <select id="annee-installation">
               <option value="">Choisir</option>
-              <option>2026</option>
-              <option>2025</option>
-              <option>2024</option>
-              <option>2023</option>
-              <option>2022</option>
-              <option>2021</option>
             </select>
           </div>
         </aside>
@@ -124,30 +117,16 @@ if (isset($conn) && $conn) {
     </footer> 
 
     <script>
-      const map = L.map("map").setView([48, -2.7], 8);
+      var map = L.map("map").setView([48, -2.7], 8);
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: "&copy; OpenStreetMap contributors",
         maxZoom: 19,
       }).addTo(map);
     </script>
 
-    <?php foreach ($stations as $s): ?>
     <script>
-      (() => {
-        const marker = L.marker([<?= (float)$s['latitude'] ?>, <?= (float)$s['longitude'] ?>]).addTo(map);
-        marker.bindPopup(<?= json_encode('<strong>' . ($s['nom_station'] ?? 'Borne') . '</strong>') ?>);
-        marker.on('click', () => {
-          document.getElementById('info-placeholder').style.display = 'none';
-          document.getElementById('nom-station').textContent = 'Informations : ' + <?= json_encode($s['nom_station'] ?? 'Borne') ?>;
-          document.getElementById('raccordement').textContent = 'Raccordement : ' + <?= json_encode($s['raccordement'] ?? 'N/A') ?>;
-          document.getElementById('adresse').textContent = 'Adresse : ' + <?= json_encode($s['adresse'] ?? 'N/A') ?>;
-          document.getElementById('horaires').textContent = 'Horaires : ' + <?= json_encode($s['horaires'] ?? 'N/A') ?>;
-          document.getElementById('date_mise_en_service').textContent = 'Date de mise en service : ' + <?= json_encode($s['date_mise_en_service'] ?? 'N/A') ?>;
-          document.getElementById('implantation').textContent = 'implantation : ' + <?= json_encode($s['implantation'] ?? 'N/A') ?>;
-        });
-      })();
+      var stationsData = <?= json_encode(array_values($stations)) ?>;
     </script>
-    <?php endforeach; ?>
 
   </body>
 </html>
