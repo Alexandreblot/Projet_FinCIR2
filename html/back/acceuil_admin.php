@@ -12,6 +12,8 @@
 
     <script src="../../javascript/front/navbar.js" defer></script>
     <script src="../../javascript/back/accueil_admin.js" defer></script>
+    <script src="../../javascript/back/stats.js" defer></script>
+
   </head>
   <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -50,32 +52,37 @@
       
       <div class="statistics">
         <div class="stats-grid">
+          
           <article class="stat-card">
-            <div class="stat-number">N/A</div>
-            <div class="stat-label">Nombre d’enregistrements en base</div>
+            <div class="stat-number"><span id="compteur-pdc">0</span></div>
+            <div class="stat-label">Nombre d'enregistrements en base</div>
           </article>
+
           <article class="stat-card">
-            <div class="stat-number">N/A</div>
-            <div class="stat-label">Nombre de points par années</div>
+            <div class="stat-number"><span id="compteur-stations">0</span></div>
+            <div class="stat-label">Nombre de stations</div>
           </article>
+
           <article class="stat-card">
-            <div class="stat-number">N/A</div>
-            <div class="stat-label">Nombre de points par département</div>
+            <div class="stat-number"><span id="compteur-communes">0</span></div>
+            <div class="stat-label">Nombre de communes couvertes</div>
           </article>
+
           <article class="stat-card">
-            <div class="stat-number">N/A</div>
-            <div class="stat-label">Nombre de points par années et par département</div>
+            <div class="stat-number"><span id="compteur-amenageurs">0</span></div>
+            <div class="stat-label">Nombre d'aménageurs</div>
           </article>
+
           <article class="stat-card">
-            <div class="stat-number">N/A</div>
-            <div class="stat-label">Nombre d’aménageurs</div>
+            <div class="stat-number"><span id="compteur-operateurs">0</span></div>
+            <div class="stat-label">Nombre d'opérateurs</div>
           </article>
+
           <article class="stat-card">
-            <div class="stat-number">N/A</div>
-            <div class="stat-label">Nombre de types de prise (nbre_pdc)</div>
             <div class="stat-number"><span id="compteur-prise">3</span></div>
             <div class="stat-label">Type de prise</div>
           </article>
+
         </div>
       </div>
 

@@ -42,289 +42,56 @@
       </div>
     </nav>
 
-    <main class="search-page container">
-      <section class="search-header">
-        <h1>Recherche des bornes</h1>
-        <p>Filtrer par aménageur, type de prise et département.</p>
-      </section>
+     <div class="container" style="margin-top: 100px; margin-bottom: 50px;">
+      <h2 class="mb-4">Rechercher une station de recharge</h2>
+      
+      <form class="bg-light p-4 rounded shadow-sm mb-5">
+        <div class="form-row">
+          
+          <div class="form-group col-md-5">
+            <label for="select-departement">Département</label>
+            <select id="select-departement" class="form-control">
+              <option value="">Tous les départements</option>
+              </select>
+          </div>
 
-      <section class="filter-area">
-        <div class="filter-card">
-          <label for="amenageur">Aménageur</label>
-          <select id="amenageur" class="form-control">
-            <option value="">Tous les aménageurs</option>
-            <option value="enedis">Enedis</option>
-            <option value="rte">RTE</option>
-            <option value="zewatt">Zewatt</option>
-          </select>
-        </div>
-        <div class="filter-card">
-          <label for="prise">Type de prise</label>
-          <select id="prise" class="form-control">
-            <option value="">Tous les types</option>
-            <option value="type2">Type 2</option>
-            <option value="chademo">CHAdeMO</option>
-            <option value="ccs">CCS</option>
-          </select>
-        </div>
-        <div class="filter-card">
-          <label for="departement">Département</label>
-          <select id="departement" class="form-control">
-            <option value="">Tous les départements</option>
-            <option value="75">75 - Paris</option>
-            <option value="69">69 - Rhône</option>
-            <option value="34">34 - Hérault</option>
-            <option value="33">33 - Gironde</option>
-          </select>
-        </div>
-      </section>
+          <div class="form-group col-md-5">
+            <label for="select-amenageur">Aménageur</label>
+            <select id="select-amenageur" class="form-control">
+              <option value="">Tous les aménageurs</option>
+              </select>
+          </div>
 
-      <section class="validate-area text-center">
-        <button class="btn btn-primary btn-validate">Valider</button>
-      </section>
+          <div class="form-group col-md-2 align-self-end">
+            <button id="btn-rechercher" class="btn btn-primary btn-block">Rechercher</button>
+          </div>
 
-      <section class="search-table-wrapper">
-        <table class="table search-table">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Prises</th>
-              <th>Puissance</th>
-              <th>Lieu</th>
-              <th>Nb points</th>
-              <th>Détails</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>2026-05-01</td>
-              <td>Type 2</td>
-              <td>22 kW</td>
-              <td>Paris 1</td>
-              <td>2</td>
-              <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.php" class="btn btn-success btn-sm">Modifier</a>
-              </td>
-            </tr>
-            <tr>
-              <td>2026-05-02</td>
-              <td>CCS</td>
-              <td>33 kW</td>
-              <td>Paris 2</td>
-              <td>3</td>
-              <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.php" class="btn btn-success btn-sm">Modifier</a>
-              </td>
-            </tr>
-            <tr>
-              <td>2026-05-03</td>
-              <td>CHAdeMO</td>
-              <td>44 kW</td>
-              <td>Paris 3</td>
-              <td>1</td>
-              <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.php" class="btn btn-success btn-sm">Modifier</a>
-              </td>
-            </tr>
-            <tr>
-              <td>2026-05-04</td>
-              <td>Type 2</td>
-              <td>22 kW</td>
-              <td>Paris 4</td>
-              <td>2</td>
-              <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.php" class="btn btn-success btn-sm">Modifier</a>
-              </td>
-            </tr>
-            <tr>
-              <td>2026-05-05</td>
-              <td>CCS</td>
-              <td>44 kW</td>
-              <td>Paris 5</td>
-              <td>3</td>
-              <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.php" class="btn btn-success btn-sm">Modifier</a>
-              </td>
-            </tr>
-            <tr>
-              <td>2026-05-06</td>
-              <td>CHAdeMO</td>
-              <td>22 kW</td>
-              <td>Paris 6</td>
-              <td>1</td>
-              <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.php" class="btn btn-success btn-sm">Modifier</a>
-              </td>
-            </tr>
-            <tr>
-              <td>2026-05-07</td>
-              <td>Type 2</td>
-              <td>33 kW</td>
-              <td>Paris 7</td>
-              <td>2</td>
-              <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.php" class="btn btn-success btn-sm">Modifier</a>
-              </td>
-            </tr>
-            <tr>
-              <td>2026-05-08</td>
-              <td>CCS</td>
-              <td>22 kW</td>
-              <td>Paris 8</td>
-              <td>3</td>
-              <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.php" class="btn btn-success btn-sm">Modifier</a>
-              </td>
-            </tr>
-            <tr>
-              <td>2026-05-09</td>
-              <td>CHAdeMO</td>
-              <td>44 kW</td>
-              <td>Paris 9</td>
-              <td>1</td>
-              <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.php" class="btn btn-success btn-sm">Modifier</a>
-              </td>
-            </tr>
-            <tr>
-              <td>2026-05-10</td>
-              <td>Type 2</td>
-              <td>33 kW</td>
-              <td>Paris 10</td>
-              <td>2</td>
-              <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.php" class="btn btn-success btn-sm">Modifier</a>
-              </td>
-            </tr>
-            <tr>
-              <td>2026-05-11</td>
-              <td>CCS</td>
-              <td>22 kW</td>
-              <td>Paris 11</td>
-              <td>3</td>
-              <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.php" class="btn btn-success btn-sm">Modifier</a>
-              </td>
-            </tr>
-            <tr>
-              <td>2026-05-12</td>
-              <td>CHAdeMO</td>
-              <td>44 kW</td>
-              <td>Paris 12</td>
-              <td>1</td>
-              <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.php" class="btn btn-success btn-sm">Modifier</a>
-              </td>
-            </tr>
-            <tr>
-              <td>2026-05-13</td>
-              <td>Type 2</td>
-              <td>22 kW</td>
-              <td>Paris 13</td>
-              <td>2</td>
-              <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.php" class="btn btn-success btn-sm">Modifier</a>
-              </td>
-            </tr>
-            <tr>
-              <td>2026-05-14</td>
-              <td>CCS</td>
-              <td>33 kW</td>
-              <td>Paris 14</td>
-              <td>3</td>
-              <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.php" class="btn btn-success btn-sm">Modifier</a>
-              </td>
-            </tr>
-            <tr>
-              <td>2026-05-15</td>
-              <td>CHAdeMO</td>
-              <td>22 kW</td>
-              <td>Paris 15</td>
-              <td>1</td>
-              <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.php" class="btn btn-success btn-sm">Modifier</a>
-              </td>
-            </tr>
-            <tr>
-              <td>2026-05-16</td>
-              <td>Type 2</td>
-              <td>44 kW</td>
-              <td>Paris 16</td>
-              <td>2</td>
-              <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.php" class="btn btn-success btn-sm">Modifier</a>
-              </td>
-            </tr>
-            <tr>
-              <td>2026-05-17</td>
-              <td>CCS</td>
-              <td>22 kW</td>
-              <td>Paris 17</td>
-              <td>3</td>
-              <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.php" class="btn btn-success btn-sm">Modifier</a>
-              </td>
-            </tr>
-            <tr>
-              <td>2026-05-18</td>
-              <td>CHAdeMO</td>
-              <td>33 kW</td>
-              <td>Paris 18</td>
-              <td>1</td>
-              <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.php" class="btn btn-success btn-sm">Modifier</a>
-              </td>
-            </tr>
-            <tr>
-              <td>2026-05-19</td>
-              <td>Type 2</td>
-              <td>44 kW</td>
-              <td>Paris 19</td>
-              <td>2</td>
-              <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.php" class="btn btn-success btn-sm">Modifier</a>
-              </td>
-            </tr>
-            <tr>
-              <td>2026-05-20</td>
-              <td>CCS</td>
-              <td>22 kW</td>
-              <td>Paris 20</td>
-              <td>3</td>
-              <td>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-                <a href="modification.php" class="btn btn-success btn-sm">Modifier</a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-    </main>
+        </div>
+      </form>
+
+      <table class="table table-striped table-hover shadow-sm">
+        <thead class="thead-dark">
+          <tr>
+            <th>Enseigne</th>
+            <th>Adresse</th>
+            <th>Ville</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="corps-tableau">
+          <tr>
+            <td colspan="4" class="text-center text-muted">Veuillez choisir vos filtres et cliquer sur Rechercher.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <footer class="footer">
       <div class="footer-content">
         <p>2026 Zapkartenn. Nathan & Alexandre - CIR2</p>
       </div>
     </footer>
+
+    <script src="../../javascript/back/recherche_admin.js"></script>
   </body>
 </html>
