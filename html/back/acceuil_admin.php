@@ -73,6 +73,8 @@
           <article class="stat-card">
             <div class="stat-number">N/A</div>
             <div class="stat-label">Nombre de types de prise (nbre_pdc)</div>
+            <div class="stat-number"><span id="compteur-prise">3</span></div>
+            <div class="stat-label">Type de prise</div>
           </article>
         </div>
       </div>
