@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Zapkartenn - Navigation</title>
+    <title>Zapkartenn - Modification</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../../css/back/modifications.css" />
 
     <script src="../../javascript/front/navbar.js" defer></script>
+    <script src="../../javascript/back/modification.js" defer></script>
   </head>
   <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -47,8 +48,12 @@
         </ul>
       </div>
     </nav>
+    
     <main class="container" style="padding: 120px 24px 40px">
       <h2>Modifier un point de recharge :</h2>
+      
+      <div id="msg-retour" class="alert d-none mt-3" role="alert"></div>
+
       <form
         id="modification-form"
         method="post"
@@ -65,45 +70,46 @@
         >
           <div>
             <label>Nom station :</label>
-            <input name="nom" class="form-control" value="Camping Pendruc" />
+            <input name="nom" class="form-control" value="" />
           </div>
           <div>
             <label>Nom opérateur :</label>
-            <input name="operateur" class="form-control" value="OUEST CHARGE" />
+            <input name="operateur" class="form-control" value="" />
           </div>
           <div>
             <label>Enseigne :</label>
-            <input name="enseigne" class="form-control" value="SPV COM" />
+            <input name="enseigne" class="form-control" value="" />
           </div>
 
           <div>
             <label>Horaires :</label>
-            <input name="horaires" class="form-control" value="8:00 - 18:30" />
+            <input name="horaires" class="form-control" value="" />
           </div>
           <div>
             <label>Tarif (€/kWh) :</label>
-            <input name="tarif" class="form-control" value="0.45" />
+            <input name="tarif" class="form-control" value="" />
           </div>
           <div>
             <label>ID :</label>
-            <input name="id" class="form-control" value="57690" readonly />
+            <input name="id" class="form-control" value="" readonly />
           </div>
 
           <div>
             <label>Type de prise :</label>
             <select name="prise" class="form-control">
-              <option>Type 2</option>
-              <option>CCS</option>
-              <option>CHAdeMO</option>
+              <option value="EF">EF (Prise Standard)</option>
+              <option value="Type 2">Type 2</option>
+              <option value="CCS">CCS</option>
+              <option value="CHAdeMO">CHAdeMO</option>
             </select>
           </div>
           <div>
             <label>Longitude :</label>
-            <input name="longitude" class="form-control" value="-3.8800" />
+            <input name="longitude" class="form-control" value="" />
           </div>
           <div>
             <label>Latitude :</label>
-            <input name="latitude" class="form-control" value="43.8400" />
+            <input name="latitude" class="form-control" value="" />
           </div>
 
           <div style="grid-column: 1 / span 2">
@@ -111,7 +117,7 @@
             <input
               name="adresse"
               class="form-control"
-              value="11 Rue de la Trémouille"
+              value=""
             />
           </div>
         </div>
