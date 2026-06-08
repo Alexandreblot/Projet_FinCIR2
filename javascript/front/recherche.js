@@ -1,102 +1,72 @@
-window.addEventListener("DOMContentLoaded", function() {
+window.addEventListener("DOMContentLoaded", function () {
+  var btnRechercher = document.getElementById("btn-rechercher");
+  var corpsTableau = document.getElementById("corps-tableau");
+  var selectDept = document.getElementById("select-departement");
+  var selectAmenageur = document.getElementById("select-amenageur");
 
-    var selectDept = document.getElementById("select-departement");
-    var selectAmenageur = document.getElementById("select-amenageur");
-    var boutonRechercher = document.getElementById("btn-rechercher");
-    var corpsTableau = document.getElementById("corps-tableau");
+  if (btnRechercher && corpsTableau) {
+    btnRechercher.addEventListener("click", function () {
+      var dept = selectDept ? selectDept.value : "";
+      var amenageur = selectAmenageur ? selectAmenageur.value : "";
 
+      var estAdmin = window.location.pathname.includes("admin");
 
-    fetch("../../api/routes/filtres.php?type=departements")
-        .then(function(reponseBrute) { 
-            return reponseBrute.json(); 
+      var urlAPI = "../../api/routes/station.php?departement=" + encodeURIComponent(dept) + "&amenageur=" + encodeURIComponent(amenageur);
+
+      corpsTableau.innerHTML = "<tr><td colspan='4' class='text-center'>Chargement des stations...</td></tr>";
+
+      fetch(urlAPI)
+        .then(function (reponse) {
+          if (!reponse.ok) throw new Error("Erreur serveur : " + reponse.status);
+          return reponse.json();
         })
-        .then(function(listeDepartements) {
-            for (var i = 0; i < listeDepartements.length; i++) {
-                var unDept = listeDepartements[i];
-                
-                var option = document.createElement("option");
-                option.value = unDept.dep_nom;
-                option.innerText = unDept.dep_nom;
-                
-                selectDept.appendChild(option);
-            }
-        });
+        .then(function (stations) {
+          corpsTableau.innerHTML = "";
 
-    fetch("../../api/routes/filtres.php?type=amenageurs")
-        .then(function(reponseBrute) { 
-            return reponseBrute.json(); 
+          if (!stations || stations.length === 0 || stations.message_erreur) {
+            corpsTableau.innerHTML = "<tr><td colspan='4' class='text-center text-warning'>Aucune station trouvée pour ces critères.</td></tr>";
+            return;
+          }
+
+          stations.forEach(function (station) {
+            var tr = document.createElement("tr");
+
+            var tdEnseigne = document.createElement("td");
+            tdEnseigne.textContent = station.nom_enseigne || "N/C";
+            tr.appendChild(tdEnseigne);
+
+            var tdAdresse = document.createElement("td");
+            tdAdresse.textContent = station.adresse || "Adresse non renseignée";
+            tr.appendChild(tdAdresse);
+
+            var tdVille = document.createElement("td");
+            tdVille.textContent = station.nom || (station.dep_nom ? "Département " + station.dep_nom : "N/C");
+            tr.appendChild(tdVille);
+
+            var tdActions = document.createElement("td");
+            tdActions.className = "text-center";
+
+            var btnAction = document.createElement("a");
+            
+            if (estAdmin) {
+              btnAction.href = "modification.php?id=" + station.id_station;
+              btnAction.className = "btn btn-sm btn-warning";
+              btnAction.textContent = "Modifier";
+            } else {
+              btnAction.href = "details.php?id=" + station.id_station;
+              btnAction.className = "btn btn-sm btn-primary";
+              btnAction.textContent = "Voir les détails";
+            }
+
+            tdActions.appendChild(btnAction);
+            tr.appendChild(tdActions);
+            corpsTableau.appendChild(tr);
+          });
         })
-        .then(function(listeAmenageurs) {
-            for (var i = 0; i < listeAmenageurs.length; i++) {
-                var unAmenageur = listeAmenageurs[i];
-                
-                var option = document.createElement("option");
-                option.value = unAmenageur.nom;
-                option.innerText = unAmenageur.nom;
-                
-                selectAmenageur.appendChild(option);
-            }
+        .catch(function (erreur) {
+          console.error("Erreur lors de la recherche :", erreur);
+          corpsTableau.innerHTML = "<tr><td colspan='4' class='text-center text-danger'>Échec du chargement des données.</td></tr>";
         });
-
-
-
-    if (boutonRechercher != null) {
-        boutonRechercher.addEventListener("click", function(evenement) {
-            evenement.preventDefault();
-
-            var choixDept = selectDept.value;
-            var choixAmenageur = selectAmenageur.value;
-
-            var urlStations = "../../api/routes/stations.php?departement=" + choixDept + "&amenageur=" + choixAmenageur;
-
-            fetch(urlStations)
-                .then(function(reponseBrute) { 
-                    return reponseBrute.json(); 
-                })
-                .then(function(listeStations) {
-                    
-                    console.log("Données reçues de l'API :", listeStations);
-                    corpsTableau.innerHTML = "";
-
-                    if (listeStations.length == 0) {
-                        corpsTableau.innerHTML = "<tr><td colspan='4' class='text-center'>Aucune station ne correspond à vos critères.</td></tr>";
-                        return;
-                    }
-
-                    for (var i = 0; i < listeStations.length; i++) {
-                        var uneStation = listeStations[i];
-
-                        var ligne = document.createElement("tr");
-
-                        var colEnseigne = document.createElement("td");
-                        colEnseigne.innerText = uneStation.nom_enseigne;
-                        ligne.appendChild(colEnseigne);
-
-                        var colAdresse = document.createElement("td");
-                        colAdresse.innerText = uneStation.adresse;
-                        ligne.appendChild(colAdresse);
-
-                        var colVille = document.createElement("td");
-                        colVille.innerText = uneStation.nom + " (" + uneStation.dep_nom + ")";
-                        ligne.appendChild(colVille);
-
-                        var colAction = document.createElement("td");
-                        var lienDetails = document.createElement("a");
-                        
-                        lienDetails.href = "details.php?id=" + uneStation.id_station;
-                        
-                        lienDetails.className = "btn btn-info btn-sm";
-                        lienDetails.innerText = "Voir détails";
-                        colAction.appendChild(lienDetails);
-                        ligne.appendChild(colAction);
-
-                        corpsTableau.appendChild(ligne);
-                    }
-                })
-                .catch(function(erreur) {
-                    console.error("Erreur lors du traitement de la recherche : ", erreur);
-                });
-        });
-    }
-
+    });
+  }
 });
