@@ -89,17 +89,17 @@
       <div class="admin-management-container text-left">
         
         <div class="admin-glass-panel">
-          <h2>🎯 Objectif de l'Espace Administrateur</h2>
+          <h2>Objectif de l'Espace Administrateur</h2>
           <p class="mt-3" style="color: rgba(255,255,255,0.85); font-size: 15px; line-height: 1.6;">
             Bienvenue sur le centre de contrôle de <strong>Zapkartenn</strong>. Cette interface technique vous permet de piloter l'ensemble du parc de bornes de recharge implanté en Bretagne. Vous pouvez ajouter de nouveaux connecteurs électriques sur des stations existantes, réviser la tarification au kilowattheure ou auditer les fiches de renseignements publiques.
           </p>
           <div class="mt-4">
-            <a href="creation.php" class="btn btn-custom-create">➕ Déployer un connecteur (PDR)</a>
+            <a href="creation.php" class="btn btn-custom-create"> Déployer un connecteur (PDR)</a>
           </div>
         </div>
 
         <div class="admin-glass-panel">
-          <h3 class="mb-4">📋 Registre des points de recharge (Limité aux 100 derniers enregistrements)</h3>
+          <h3 class="mb-4">Registre des points de recharge</h3>
           <div class="table-responsive">
             <table class="table admin-table table-borderless m-0">
               <thead>
