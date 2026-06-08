@@ -1,0 +1,86 @@
+
+.admin-management-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1240px;
+  margin: 40px auto 0;
+  padding: 0 10px;
+}
+
+.admin-glass-panel {
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 18px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #ffffff;
+  margin-bottom: 30px;
+}
+
+.admin-glass-panel h2, 
+.admin-glass-panel h3 {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.admin-table {
+  color: #ffffff !important;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.admin-table th {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff;
+}
+
+.admin-table td {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  vertical-align: middle !important;
+}
+
+.admin-table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.admin-table .badge-secondary {
+  background: rgba(255, 255, 255, 0.2);
+  font-size: 13px;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.admin-table .btn-sm {
+  border-radius: 15px;
+  font-size: 12px;
+  padding: 4px 12px;
+}
+
+.admin-table .btn-warning {
+  color: #111111;
+}
+
+.btn-custom-create {
+  background-color: #f87171;
+  color: white !important;
+  font-weight: 600;
+  border-radius: 20px;
+  padding: 10px 28px;
+  border: none;
+  display: inline-block;
+  text-decoration: none !important;
+  transition: background-color 0.2s ease;
+}
+
+.btn-custom-create:hover {
+  background-color: #ef4444;
+}

@@ -15,7 +15,7 @@ window.addEventListener("DOMContentLoaded", function() {
                 }
 
                 if (pointsDeCharge.length === 0) {
-                    tbodyAdmin.innerHTML = "<tr><td colspan='6' class='text-center text-muted'>Aucun point de recharge répertorié.</td></tr>";
+                    tbodyAdmin.innerHTML = "<tr><td colspan='6' class='text-center' style='color: rgba(255,255,255,0.6);'>Aucun enregistrement trouvé.</td></tr>";
                     return;
                 }
 
@@ -29,14 +29,18 @@ window.addEventListener("DOMContentLoaded", function() {
                     var puissance = pdc.puissance_nominale ? pdc.puissance_nominale + " kW" : "Inconnue";
                     var tarif = pdc.tarification ? pdc.tarification : "Standard";
 
-                    var actionsHTML = 
-                        "<a href='details_admin.php?id=" + pdc.id_station + "' class='btn btn-info btn-sm mr-1'>Détails</a>" +
-                        "<a href='modification.php?id=" + pdc.id_pdc + "' class='btn btn-warning btn-sm'>Modifier</a>";
+                    // CORRECTION DU LIEN : Redirection vers le fichier d'administration back details_admin.php
+                    var urlDetails = "details_admin.php?id=" + pdc.id_station;
+                    var urlModification = "modification.php?id=" + pdc.id_pdc;
 
-                    ligne.innerHTML = "<td><strong>#" + idPdc + "</strong></td>" +
+                    var actionsHTML = 
+                        "<a href='" + urlDetails + "' class='btn btn-info btn-sm mr-2' style='border-radius:15px; font-size:12px;'>Détails</a>" +
+                        "<a href='" + urlModification + "' class='btn btn-warning btn-sm' style='border-radius:15px; font-size:12px; color:#111;'>Modifier</a>";
+
+                    ligne.innerHTML = "<td style='font-weight: bold; color: #f87171;'>#" + idPdc + "</td>" +
                                       "<td>" + nomStation + "</td>" +
                                       "<td>" + enseigne + "</td>" +
-                                      "<td>" + puissance + "</td>" +
+                                      "<td><span class='badge badge-secondary' style='background: rgba(255,255,255,0.2); font-size:13px;'>" + puissance + "</span></td>" +
                                       "<td>" + tarif + "</td>" +
                                       "<td>" + actionsHTML + "</td>";
 
@@ -44,8 +48,8 @@ window.addEventListener("DOMContentLoaded", function() {
                 }
             })
             .catch(function(erreur) {
-                console.error("Erreur d'alimentation de l'accueil admin :", erreur);
-                tbodyAdmin.innerHTML = "<tr><td colspan='6' class='text-center text-danger'>Impossible de joindre le serveur de données.</td></tr>";
+                console.error("Erreur serveur registre :", erreur);
+                tbodyAdmin.innerHTML = "<tr><td colspan='6' class='text-center text-danger'>Échec de la connexion avec la passerelle API.</td></tr>";
             });
     }
 });
