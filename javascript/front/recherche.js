@@ -4,6 +4,52 @@ window.addEventListener("DOMContentLoaded", function () {
   var selectDept = document.getElementById("select-departement");
   var selectAmenageur = document.getElementById("select-amenageur");
 
+  if (selectDept && selectAmenageur) {
+    
+    fetch("../../api/routes/filtres.php?type=departements")
+      .then(function (reponse) {
+        if (!reponse.ok) throw new Error("Erreur filtres départements");
+        return reponse.json();
+      })
+      .then(function (departements) {
+        selectDept.innerHTML = '<option value="">Tous les départements</option>';
+        
+        departements.forEach(function (item) {
+          if (item.nom) {
+            var opt = document.createElement("option");
+            opt.value = item.nom;
+            opt.textContent = item.nom;
+            selectDept.appendChild(opt);
+          }
+        });
+      })
+      .catch(function (erreur) {
+        console.error("Erreur lors de la récupération des départements :", erreur);
+      });
+
+    fetch("../../api/routes/filtres.php?type=amenageurs")
+      .then(function (reponse) {
+        if (!reponse.ok) throw new Error("Erreur filtres aménageurs");
+        return reponse.json();
+      })
+      .then(function (amenageurs) {
+        selectAmenageur.innerHTML = '<option value="">Tous les aménageurs</option>';
+        
+        amenageurs.forEach(function (item) {
+          if (item.nom) {
+            var opt = document.createElement("option");
+            opt.value = item.nom;
+            opt.textContent = item.nom;
+            selectAmenageur.appendChild(opt);
+          }
+        });
+      })
+      .catch(function (erreur) {
+        console.error("Erreur lors de la récupération des aménageurs :", erreur);
+      });
+  }
+
+
   if (btnRechercher && corpsTableau) {
     btnRechercher.addEventListener("click", function () {
       var dept = selectDept ? selectDept.value : "";
@@ -49,11 +95,11 @@ window.addEventListener("DOMContentLoaded", function () {
             var btnAction = document.createElement("a");
             
             if (estAdmin) {
-              btnAction.href = "modification.php?id=" + station.id_station;
+              btnAction.href = "modification.php?id=" + encodeURIComponent(station.id_station);
               btnAction.className = "btn btn-sm btn-warning";
               btnAction.textContent = "Modifier";
             } else {
-              btnAction.href = "details.php?id=" + station.id_station;
+              btnAction.href = "details.php?id=" + encodeURIComponent(station.id_station);
               btnAction.className = "btn btn-sm btn-primary";
               btnAction.textContent = "Voir les détails";
             }

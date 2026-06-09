@@ -1,14 +1,41 @@
-<!doctype html>
+<?php
+require_once '../../api/config/database.php';
+
+$database = new Database();
+$db = $database->getConnection();
+
+$listeDepartements = [];
+$listeAmenageurs = [];
+
+if ($db != null) {
+    try {
+        $queryDep = "SELECT DISTINCT dep_nom FROM COMMUNE WHERE dep_nom IS NOT NULL AND dep_nom != '' ORDER BY dep_nom ASC";
+        $stmtDep = $db->query($queryDep);
+        $listeDepartements = $stmtDep->fetchAll(PDO::FETCH_COLUMN);
+
+        $queryAmenageur = "SELECT DISTINCT nom_enseigne FROM STATION WHERE nom_enseigne IS NOT NULL AND nom_enseigne != '' ORDER BY nom_enseigne ASC";
+        $stmtAmenageur = $db->query($queryAmenageur);
+        $listeAmenageurs = $stmtAmenageur->fetchAll(PDO::FETCH_COLUMN);
+        
+    } catch (PDOException $e) {
+        echo "<script>console.error('Erreur SQL : " . addslashes($e->getMessage()) . "');</script>";
+    }
+}
+?>
+<!DOCTYPE html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Zapkartenn - Détails de la Borne</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../../css/front/details.css" />
+    <title>Zapkartenn - Recherche</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="../../css/front/recherche.css" />
     <link rel="stylesheet" href="../../css/front/navbar.css" />
     <link rel="stylesheet" href="../../css/front/footer.css" />
-    
+
     <script src="../../javascript/front/navbar.js" defer></script>
     <script src="../../javascript/front/recherche.js" defer></script>
   </head>
@@ -22,63 +49,70 @@
         </div>
         <ul class="nav navbar-nav" id="menu">
           <li><a href="carte.php" class="nav-btn1">Carte</a></li>
-          <li><a href="recherche.php" class="nav-btn1">Recherche</a></li>
-          <li><a href="../back/acceuil_admin.php" class="nav-btn2">Connexion</a></li>
+          <li><a href="recherche.php" class="nav-btn1 active">Recherche</a></li>
+          <li>
+            <a href="../back/acceuil_admin.php" class="nav-btn2"
+              ><img src="../../image/avatar-de-connexion.png" class="Connexion" />Connexion</a
+            >
+          </li>
         </ul>
       </div>
     </nav>
 
-    <div class="container" style="margin-top: 120px; margin-bottom: 50px;">
-      <h2 class="mb-4">Recherche des stations</h2>
-      <form id="form-recherche-admin" class="bg-light p-4 rounded shadow-sm mb-5" onsubmit="return false;">
-        <div class="form-row">
-          
-          <div class="form-group col-md-5">
-            <label for="select-departement">Département</label>
-            <select id="select-departement" class="form-control">
-              <option value="">Tous les départements</option>
-              <option value="Finistère">Finistère</option>
-              <option value="Ille-et-Vilaine">Ille-et-Vilaine</option>
-              <option value="Morbihan">Morbihan</option>
-              <option value="Côtes-d'Armor">Côtes-d'Armor</option>
-            </select>
-          </div>
-
-          <div class="form-group col-md-5">
-            <label for="select-amenageur">Aménageur</label>
-            <select id="select-amenageur" class="form-control">
-              <option value="">Tous les aménageurs</option>
-              <option value="SDE22">SDE22</option>
-              <option value="SDE35">SDE35</option>
-              <option value="SDE44">SDE44</option>
-              <option value="SDE29">SDE29</option>
-              <option value="Brev'Car">Brev'Car</option>
-            </select>
-          </div>
-
-          <div class="form-group col-md-2 align-self-end">
-            <button id="btn-rechercher" class="btn btn-info btn-block">Rechercher</button>
-          </div>
-
+    <main class="container" style="padding: 120px 24px 40px;">
+      <h2>Rechercher un point de recharge :</h2>
+      
+      <form id="search-form" class="form-inline mt-3 bg-light p-3 rounded shadow-sm" onsubmit="return false;">
+        
+        <div class="form-group mr-3">
+          <label for="select-departement" class="mr-2">Département :</label>
+          <select id="select-departement" class="form-control">
+            <option value="">Tous les départements</option>
+            <?php foreach ($listeDepartements as $depNom): ?>
+              <option value="<?php echo htmlspecialchars($depNom); ?>">
+                <?php echo htmlspecialchars($depNom); ?>
+              </option>
+            <?php endforeach; ?>
+          </select>
         </div>
+
+        <div class="form-group mr-3">
+          <label for="select-amenageur" class="mr-2">Aménageur :</label>
+          <select id="select-amenageur" class="form-control">
+            <option value="">Tous les aménageurs</option>
+            <?php foreach ($listeAmenageurs as $amenageur): ?>
+              <option value="<?php echo htmlspecialchars($amenageur); ?>">
+                <?php echo htmlspecialchars($amenageur); ?>
+              </option>
+            <?php endforeach; ?>
+          </select>
+        </div>
+
+        <button type="button" id="btn-rechercher" class="btn btn-primary">Filtrer</button>
       </form>
 
-      <table class="table table-striped table-hover shadow-sm">
-        <thead class="thead-dark">
-          <tr>
-            <th>Enseigne</th>
-            <th>Adresse</th>
-            <th>Ville</th>
-            <th class="text-center"> Details stations</th>
-          </tr>
-        </thead>
-        <tbody id="corps-tableau">
-          <tr>
-            <td colspan="4" class="text-center text-muted">Veuillez choisir vos filtres et cliquer sur Rechercher.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+      <div id="message-filtres" class="alert alert-warning mt-3 d-none">
+        Veuillez renseigner au moins un filtre (Département ou Aménageur) pour lancer la recherche.
+      </div>
+
+      <div class="table-responsive mt-4">
+        <table class="table table-striped table-hover shadow-sm">
+          <thead class="thead-dark">
+            <tr>
+              <th>Enseigne</th>
+              <th>Adresse</th>
+              <th>Ville / Département</th>
+              <th class="text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody id="corps-tableau">
+            <tr>
+              <td colspan="4" class="text-center text-muted">Utilisez les filtres ci-dessus pour afficher des stations.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
 
     <footer class="footer">
       <div class="footer-content">

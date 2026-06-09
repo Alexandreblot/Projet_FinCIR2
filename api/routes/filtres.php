@@ -15,7 +15,7 @@ $listeResultats = [];
 
 try {
     if ($typeDemande == "departements") {
-        $sql = "SELECT DISTINCT dep_nom 
+        $sql = "SELECT DISTINCT dep_nom AS nom 
                 FROM COMMUNE 
                 WHERE dep_nom IN ('Côtes-d\'Armor', 'Finistère', 'Ille-et-Vilaine', 'Morbihan') 
                 ORDER BY dep_nom ASC";
