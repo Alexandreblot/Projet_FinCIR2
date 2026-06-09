@@ -1,16 +1,17 @@
 window.addEventListener("DOMContentLoaded", function () {
   var markersLayer = L.layerGroup().addTo(map);
-
+// On va chercher la liste des stations pour les afficher sur la carte
   function afficherMarqueurs(liste) {
     markersLayer.clearLayers();
 
     liste.forEach(function (s) {
       var marker = L.marker([parseFloat(s.latitude), parseFloat(s.longitude)]);
-
+// On prépare le contenu de la popup pour chaque station
       var popupContent = "<strong>" + (s.nom_station || "Borne") + "</strong>";
       marker.bindPopup(popupContent);
-
+// On affiche les détails de la station dans la section d'information lorsque l'utilisateur clique sur le marqueur
       marker.on("click", function () {
+        // On masque le message d'information par défaut et on affiche les détails de la station
         document.getElementById("info-placeholder").style.display = "none";
         document.getElementById("nom-station").textContent ="Informations : " + (s.nom_station || "Borne");
 
@@ -20,7 +21,7 @@ window.addEventListener("DOMContentLoaded", function () {
         document.getElementById("horaires").textContent ="Horaires : " + (s.horaires || "N/A");
         document.getElementById("date_mise_en_service").textContent ="Date de mise en service : " + (s.date_mise_en_service || "N/A");
         document.getElementById("implantation").textContent ="Implantation : " + (s.implantation || "N/A");
-
+// On affiche les informations sur les prises disponibles pour la station
         var detailsLink = document.getElementById("details-link");
         if (detailsLink) {
           var stationId = s.id_station || s.id;
@@ -36,11 +37,11 @@ window.addEventListener("DOMContentLoaded", function () {
       markersLayer.addLayer(marker);
     });
   }
-
+// Fonction pour filtrer les stations en fonction des critères sélectionnés et mettre à jour les marqueurs affichés sur la carte
   function filtrerEtAfficher() {
     var dept = document.getElementById("departement").value;
     var annee = document.getElementById("annee-installation").value;
-
+// On filtre les données des stations en fonction des critères sélectionnés
     var filtered = stationsData.filter(function (s) {
       var okDept = !dept || s.dep_nom === dept;
       var okAnnee =
@@ -48,7 +49,7 @@ window.addEventListener("DOMContentLoaded", function () {
         (s.date_mise_en_service && s.date_mise_en_service.startsWith(annee));
       return okDept && okAnnee;
     });
-
+// On affiche les marqueurs correspondants aux stations filtrées
     afficherMarqueurs(filtered);
   }
   afficherMarqueurs(stationsData);
@@ -59,13 +60,14 @@ window.addEventListener("DOMContentLoaded", function () {
   document
     .getElementById("annee-installation")
     .addEventListener("change", filtrerEtAfficher);
-
+// On va chercher les départements et les années d'installation pour remplir les filtres
   var selectDept = document.getElementById("departement");
   if (selectDept) {
     fetch("../../api/routes/filtres.php?type=departements")
       .then(function (reponseBrute) {
         return reponseBrute.json();
       })
+      // On traite la liste des départements reçue de l'API pour remplir le select des départements
       .then(function (listeDepartements) {
         for (var i = 0; i < listeDepartements.length; i++) {
           var unDept = listeDepartements[i];
@@ -81,7 +83,7 @@ window.addEventListener("DOMContentLoaded", function () {
         console.error("Erreur chargement départements:", error);
       });
   }
-
+// On va chercher les années d'installation pour remplir le select des années
   var selectAnnee = document.getElementById("annee-installation");
   if (selectAnnee) {
     fetch("../../api/routes/filtres.php?type=annees")

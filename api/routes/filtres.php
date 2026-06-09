@@ -12,7 +12,7 @@ if (isset($_GET['type'])) {
 }
 
 $listeResultats = [];
-
+// En fonction du type de demande reçu, on exécute la requête SQL correspondante pour récupérer les données à afficher dans les filtres du front-end
 try {
     if ($typeDemande == "departements") {
         $sql = "SELECT DISTINCT dep_nom AS nom 
@@ -23,7 +23,7 @@ try {
         $requete = $db->query($sql);
         $listeResultats = $requete->fetchAll();
     }
-    
+    // Si le type de demande est "amenageurs", on récupère la liste des aménageurs présents dans la base de données
     else if ($typeDemande == "amenageurs") {
         $sql = "SELECT DISTINCT nom_enseigne AS nom 
                 FROM STATION 
@@ -34,7 +34,7 @@ try {
         $requete = $db->query($sql);
         $listeResultats = $requete->fetchAll();
     }
-    
+    // Si le type de demande est "annees", on récupère la liste des années de mise en service des stations présentes dans la base de données
     else if ($typeDemande == "annees") {
         $sql = "SELECT DISTINCT YEAR(date_mise_en_service) AS annee
                 FROM STATION 

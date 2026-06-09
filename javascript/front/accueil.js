@@ -1,5 +1,4 @@
 window.addEventListener("DOMContentLoaded", function() {
-
     var urlAPI = "api/routes/stats.php";
 
     fetch(urlAPI)
@@ -8,7 +7,7 @@ window.addEventListener("DOMContentLoaded", function() {
         })
         .then(function(donneesRecues) {
             console.log(donneesRecues);
-
+// On met à jour les éléments du DOM avec les statistiques reçues de l'API
             var elementPdc = document.getElementById("compteur-pdc");
             var elementStations = document.getElementById("compteur-stations");
             var elementCommunes = document.getElementById("compteur-communes");

@@ -5,12 +5,13 @@ window.addEventListener("DOMContentLoaded", function () {
   var selectAmenageur = document.getElementById("select-amenageur");
 
   if (selectDept && selectAmenageur) {
-    
+// On va chercher les options pour les filtres de recherche (départements et aménageurs)
     fetch("../../api/routes/filtres.php?type=departements")
       .then(function (reponse) {
         if (!reponse.ok) throw new Error("Erreur filtres départements");
         return reponse.json();
       })
+// On remplit les options du select des départements avec les données reçues de l'API
       .then(function (departements) {
         selectDept.innerHTML = '<option value="">Tous les départements</option>';
         departements.forEach(function (item) {
@@ -22,16 +23,18 @@ window.addEventListener("DOMContentLoaded", function () {
           }
         });
       })
+// En cas d'erreur lors du chargement des départements, on affiche une option d'erreur dans le select
       .catch(function (erreur) {
         console.error("Erreur lors de la récupération des départements :", erreur);
         selectDept.innerHTML = '<option value="">Erreur de chargement</option>';
       });
-
+// On va chercher les options pour les filtres de recherche (départements et aménageurs)
     fetch("../../api/routes/filtres.php?type=amenageurs")
       .then(function (reponse) {
         if (!reponse.ok) throw new Error("Erreur filtres aménageurs");
         return reponse.json();
       })
+// On remplit les options du select des aménageurs avec les données reçues de l'API
       .then(function (amenageurs) {
         selectAmenageur.innerHTML = '<option value="">Tous les aménageurs</option>';
         amenageurs.forEach(function (item) {
@@ -43,13 +46,14 @@ window.addEventListener("DOMContentLoaded", function () {
           }
         });
       })
+// En cas d'erreur lors du chargement des aménageurs, on affiche une option d'erreur dans le select
       .catch(function (erreur) {
         console.error("Erreur lors de la récupération des aménageurs :", erreur);
         selectAmenageur.innerHTML = '<option value="">Erreur de chargement</option>';
       });
   }
 
-
+// On vérifie que le bouton de recherche et le tableau existent avant d'ajouter l'événement de clic pour lancer la recherche
   if (btnRechercher && corpsTableau) {
     btnRechercher.addEventListener("click", function () {
       var dept = selectDept ? selectDept.value : "";
@@ -65,7 +69,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
       corpsTableau.innerHTML =
         "<tr><td colspan='4' class='text-center'>Chargement des stations...</td></tr>";
-
+// On effectue la requête pour rechercher les stations en fonction des critères sélectionnés
       fetch(urlAPI)
         .then(function (reponse) {
           if (!reponse.ok)
@@ -80,7 +84,7 @@ window.addEventListener("DOMContentLoaded", function () {
               "<tr><td colspan='4' class='text-center text-warning'>Aucune station trouvée pour ces critères.</td></tr>";
             return;
           }
-
+// On parcourt les stations reçues et on les affiche dans le tableau
           stations.forEach(function (station) {
             var tr = document.createElement("tr");
 
@@ -126,7 +130,7 @@ window.addEventListener("DOMContentLoaded", function () {
               btnAction.textContent = "Voir les détails";
               tdActions.appendChild(btnAction);
             }
-
+// On ajoute les actions à la ligne du tableau
             tr.appendChild(tdActions);
             corpsTableau.appendChild(tr);
           });
@@ -150,7 +154,7 @@ function supprimerStation(idStation) {
     var urlAPIDelete =
       "../../api/routes/supprimer_station.php?id=" +
       encodeURIComponent(idStation);
-
+// On envoie la requête de suppression à l'API
     fetch(urlAPIDelete, {
       method: "DELETE",
     })
@@ -162,7 +166,7 @@ function supprimerStation(idStation) {
       .then(function (resultat) {
         if (resultat.success) {
           alert(resultat.message);
-
+// Après la suppression, on relance la recherche pour mettre à jour le tableau
           var btnRechercher = document.getElementById("btn-rechercher");
           if (btnRechercher) {
             btnRechercher.click();

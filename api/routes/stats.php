@@ -1,16 +1,12 @@
 <?php
-// On indique au navigateur qu'on va lui envoyer du texte au format JSON
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
-// On va chercher le fichier de connexion
 require_once '../config/database.php';
 
-// On se connecte à la base de données
 $database = new Database();
 $db = $database->getConnection();
 
-// On vérifie que la connexion a bien fonctionné
 if($db != null) {
     try {
         // --- 1. COMPTER LES POINTS DE CHARGE ---
