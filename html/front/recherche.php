@@ -1,27 +1,3 @@
-<?php
-require_once '../../api/config/database.php';
-
-$database = new Database();
-$db = $database->getConnection();
-
-$listeDepartements = [];
-$listeAmenageurs = [];
-
-if ($db != null) {
-    try {
-        $queryDep = "SELECT DISTINCT dep_nom FROM COMMUNE WHERE dep_nom IS NOT NULL AND dep_nom != '' ORDER BY dep_nom ASC";
-        $stmtDep = $db->query($queryDep);
-        $listeDepartements = $stmtDep->fetchAll(PDO::FETCH_COLUMN);
-
-        $queryAmenageur = "SELECT DISTINCT nom_enseigne FROM STATION WHERE nom_enseigne IS NOT NULL AND nom_enseigne != '' ORDER BY nom_enseigne ASC";
-        $stmtAmenageur = $db->query($queryAmenageur);
-        $listeAmenageurs = $stmtAmenageur->fetchAll(PDO::FETCH_COLUMN);
-        
-    } catch (PDOException $e) {
-        echo "<script>console.error('Erreur SQL : " . addslashes($e->getMessage()) . "');</script>";
-    }
-}
-?>
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -67,24 +43,14 @@ if ($db != null) {
         <div class="form-group mr-3">
           <label for="select-departement" class="mr-2">Département :</label>
           <select id="select-departement" class="form-control">
-            <option value="">Tous les départements</option>
-            <?php foreach ($listeDepartements as $depNom): ?>
-              <option value="<?php echo htmlspecialchars($depNom); ?>">
-                <?php echo htmlspecialchars($depNom); ?>
-              </option>
-            <?php endforeach; ?>
+            <option value="">Chargement...</option>
           </select>
         </div>
 
         <div class="form-group mr-3">
           <label for="select-amenageur" class="mr-2">Aménageur :</label>
           <select id="select-amenageur" class="form-control">
-            <option value="">Tous les aménageurs</option>
-            <?php foreach ($listeAmenageurs as $amenageur): ?>
-              <option value="<?php echo htmlspecialchars($amenageur); ?>">
-                <?php echo htmlspecialchars($amenageur); ?>
-              </option>
-            <?php endforeach; ?>
+            <option value="">Chargement...</option>
           </select>
         </div>
 

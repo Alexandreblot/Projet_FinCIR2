@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../../css/back/navbar_admin.css" />
     <link rel="stylesheet" href="../../css/back/footer_admin.css" />
     <script src="../../javascript/front/navbar.js" defer></script>
-    <script src="../../javascript/back/recherche_admin.js" defer></script>
+    <script src="../../javascript/front/recherche.js" defer></script>
   </head>
   <body>
     
@@ -27,7 +27,7 @@
             <a href="../../index.php" class="nav-btn2">
               <img src="../../image/avatar-de-connexion.png" class="Connexion" />Déconnexion
             </a>
-          </td>
+          </li>
         </ul>
       </div>
     </nav>
@@ -41,28 +41,19 @@
           <div class="form-group col-md-5">
             <label for="select-departement">Département</label>
             <select id="select-departement" class="form-control">
-              <option value="">Tous les départements</option>
-              <option value="Finistère">Finistère</option>
-              <option value="Ille-et-Vilaine">Ille-et-Vilaine</option>
-              <option value="Morbihan">Morbihan</option>
-              <option value="Côtes-d'Armor">Côtes-d'Armor</option>
+              <option value="">Chargement...</option>
             </select>
           </div>
 
           <div class="form-group col-md-5">
             <label for="select-amenageur">Aménageur</label>
             <select id="select-amenageur" class="form-control">
-              <option value="">Tous les aménageurs</option>
-              <option value="SDE22">SDE22</option>
-              <option value="SDE35">SDE35</option>
-              <option value="SDE44">SDE44</option>
-              <option value="SDE29">SDE29</option>
-              <option value="Brev'Car">Brev'Car</option>
+              <option value="">Chargement...</option>
             </select>
           </div>
 
           <div class="form-group col-md-2 align-self-end">
-            <button id="btn-rechercher" class="btn btn-info btn-block">Rechercher</button>
+            <button type="button" id="btn-rechercher" class="btn btn-info btn-block">Rechercher</button>
           </div>
 
         </div>
@@ -73,7 +64,7 @@
           <tr>
             <th>Enseigne</th>
             <th>Adresse</th>
-            <th>Ville</th>
+            <th>Ville / Département</th>
             <th class="text-center">Actions Administrateur</th>
           </tr>
         </thead>
