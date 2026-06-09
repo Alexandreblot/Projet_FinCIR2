@@ -7,13 +7,14 @@ require_once '../config/database.php';
 $database = new Database();
 $db = $database->getConnection();
 
+// Vérification que la méthode HTTP utilisée est bien POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     echo json_encode(["message_erreur" => "Méthode non autorisée. POST attendu."]);
     exit;
 }
 
-try {
+try { // Récupération des données envoyées en POST
     $id_station = $_POST['id_station'] ?? null;
     $puissance  = $_POST['puissance'] ?? null;
     $tarif      = $_POST['tarif'] ?? null;
@@ -24,18 +25,12 @@ try {
     $chademo    = $_POST['chademo'] ?? 'Non';
     $paiement   = $_POST['paiement'] ?? null;
 
-    if (empty($id_station) || empty($puissance)) {
-        http_response_code(400);
-        echo json_encode(["message_erreur" => "La station de rattachement et la puissance sont obligatoires."]);
-        exit;
-    }
-
     $val_prise_ef = ($prise_ef === 'Oui') ? 1 : 0;
     $val_prise_t2 = ($prise_t2 === 'Oui') ? 1 : 0;
 
     $val_prise_ccs = ($prise_ccs === 'Oui') ? true : false;
     $val_chademo   = ($chademo === 'Oui') ? true : false;
-
+    //insertion du nouveau point de recharge dans la base de données
     $sql = "INSERT INTO POINT_DE_CHARGE (
                 puissance_nominale, 
                 prise_ef, 
@@ -57,7 +52,7 @@ try {
                 :tarification, 
                 :id_station
             )";
-
+    // Préparation et exécution de la requête d'insertion
     $stmt = $db->prepare($sql);
     $stmt->execute([
         'puissance'    => $puissance,

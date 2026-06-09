@@ -13,19 +13,19 @@ if ($idStation == "") {
     echo json_encode(["message_erreur" => "Identifiant de station manquant."]);
     exit;
 }
-
+// Récupération des détails de la station et de ses points de recharge associés
 try {
     $sql = "SELECT S.*, P.*
             FROM STATION S
             LEFT JOIN POINT_DE_CHARGE P ON S.id_station = P.id_station
             WHERE S.id_station = :id
             LIMIT 1";
-            
-    $stmt = $db->prepare($sql);
-    $stmt->execute(['id' => $idStation]);
-    $donneesStation = $stmt->fetch(PDO::FETCH_ASSOC);
+    // Préparation et exécution de la requête
+    $stmt = $db->prepare($sql); // Prépare la requête SQL avec un paramètre pour l'identifiant de station
+    $stmt->execute(['id' => $idStation]); // Exécution de la requête avec l'identifiant de station fourni
+    $donneesStation = $stmt->fetch(PDO::FETCH_ASSOC); // Récupère la première ligne
 
-    if ($donneesStation) {
+    if ($donneesStation) { // Si la station existe, on renvoie ses détails
         http_response_code(200);
         echo json_encode($donneesStation);
     } else {
