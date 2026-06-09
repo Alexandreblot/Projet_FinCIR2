@@ -29,8 +29,7 @@
     </nav>
 
     <div class="container" style="margin-top: 120px; margin-bottom: 50px;">
-      <h2 class="mb-4">Gestion des stations (Administration)</h2>
-      
+      <h2 class="mb-4">Recherche des stations</h2>
       <form id="form-recherche-admin" class="bg-light p-4 rounded shadow-sm mb-5" onsubmit="return false;">
         <div class="form-row">
           
