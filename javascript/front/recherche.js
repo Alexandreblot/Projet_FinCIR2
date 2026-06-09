@@ -1,17 +1,16 @@
 window.addEventListener("DOMContentLoaded", function () {
-  var estAdmin = window.location.pathname.includes("admin");
-
-  var prefixePath = estAdmin ? "../../api/routes/" : "../../api/routes/";
-
   var btnRechercher = document.getElementById("btn-rechercher");
   var corpsTableau = document.getElementById("corps-tableau");
   var selectDept = document.getElementById("select-departement");
   var selectAmenageur = document.getElementById("select-amenageur");
 
-
+  // =========================================================================
+  // 1. CHARGEMENT DYNAMIQUE DES FILTRES DEPUIS L'API AU CHARGEMENT DE LA PAGE
+  // =========================================================================
   if (selectDept && selectAmenageur) {
     
-    fetch(prefixePath + "filtres.php?type=departements")
+    // Remplissage du menu déroulant des Départements
+    fetch("../../api/routes/filtres.php?type=departements")
       .then(function (reponse) {
         if (!reponse.ok) throw new Error("Erreur filtres départements");
         return reponse.json();
@@ -31,7 +30,8 @@ window.addEventListener("DOMContentLoaded", function () {
         console.error("Erreur lors de la récupération des départements :", erreur);
       });
 
-    fetch(prefixePath + "filtres.php?type=amenageurs")
+    // Remplissage du menu déroulant des Aménageurs
+    fetch("../../api/routes/filtres.php?type=amenageurs")
       .then(function (reponse) {
         if (!reponse.ok) throw new Error("Erreur filtres aménageurs");
         return reponse.json();
@@ -52,13 +52,17 @@ window.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-
+  // =========================================================================
+  // 2. INTERCEPTION DE LA RECHERCHE ET REQUÊTE SUR LES STATIONS
+  // =========================================================================
   if (btnRechercher && corpsTableau) {
     btnRechercher.addEventListener("click", function () {
       var dept = selectDept ? selectDept.value : "";
       var amenageur = selectAmenageur ? selectAmenageur.value : "";
 
-      var urlAPI = prefixePath + "station.php?departement=" + encodeURIComponent(dept) + "&amenageur=" + encodeURIComponent(amenageur);
+      var estAdmin = window.location.pathname.includes("admin");
+
+      var urlAPI = "../../api/routes/station.php?departement=" + encodeURIComponent(dept) + "&amenageur=" + encodeURIComponent(amenageur);
 
       corpsTableau.innerHTML = "<tr><td colspan='4' class='text-center'>Chargement des stations...</td></tr>";
 
@@ -78,7 +82,6 @@ window.addEventListener("DOMContentLoaded", function () {
           stations.forEach(function (station) {
             var tr = document.createElement("tr");
 
-            // Colonne Enseigne
             var tdEnseigne = document.createElement("td");
             tdEnseigne.textContent = station.nom_enseigne || "N/C";
             tr.appendChild(tdEnseigne);

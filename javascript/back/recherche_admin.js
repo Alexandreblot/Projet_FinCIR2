@@ -4,6 +4,52 @@ window.addEventListener("DOMContentLoaded", function () {
   var selectDept = document.getElementById("select-departement");
   var selectAmenageur = document.getElementById("select-amenageur");
 
+  if (selectDept && selectAmenageur) {
+    
+    fetch("../../api/routes/filtres.php?type=departements")
+      .then(function (reponse) {
+        if (!reponse.ok) throw new Error("Erreur filtres départements");
+        return reponse.json();
+      })
+      .then(function (departements) {
+        selectDept.innerHTML = '<option value="">Tous les départements</option>';
+        departements.forEach(function (item) {
+          if (item.nom) {
+            var opt = document.createElement("option");
+            opt.value = item.nom;
+            opt.textContent = item.nom;
+            selectDept.appendChild(opt);
+          }
+        });
+      })
+      .catch(function (erreur) {
+        console.error("Erreur lors de la récupération des départements :", erreur);
+        selectDept.innerHTML = '<option value="">Erreur de chargement</option>';
+      });
+
+    fetch("../../api/routes/filtres.php?type=amenageurs")
+      .then(function (reponse) {
+        if (!reponse.ok) throw new Error("Erreur filtres aménageurs");
+        return reponse.json();
+      })
+      .then(function (amenageurs) {
+        selectAmenageur.innerHTML = '<option value="">Tous les aménageurs</option>';
+        amenageurs.forEach(function (item) {
+          if (item.nom) {
+            var opt = document.createElement("option");
+            opt.value = item.nom;
+            opt.textContent = item.nom;
+            selectAmenageur.appendChild(opt);
+          }
+        });
+      })
+      .catch(function (erreur) {
+        console.error("Erreur lors de la récupération des aménageurs :", erreur);
+        selectAmenageur.innerHTML = '<option value="">Erreur de chargement</option>';
+      });
+  }
+
+
   if (btnRechercher && corpsTableau) {
     btnRechercher.addEventListener("click", function () {
       var dept = selectDept ? selectDept.value : "";
@@ -64,7 +110,7 @@ window.addEventListener("DOMContentLoaded", function () {
               btnAction.textContent = "Modifier";
               tdActions.appendChild(btnAction);
 
-              // BOUTON SUPPRIMER (Uniquement pour l'administration)
+              // bouton supprimer
               var btnSupprimer = document.createElement("button");
               btnSupprimer.className = "btn btn-sm btn-danger";
               btnSupprimer.textContent = "Supprimer";
@@ -94,8 +140,7 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-//Fonction de suppression d'une station
-
+// suppression d'une station
 function supprimerStation(idStation) {
   if (
     confirm(
