@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="../../css/front/index.css" />
     <link rel="stylesheet" href="../../css/back/accueil_admin.css" />
 
-    <script src="../../javascript/front/navbar.js" defer></script>
-    <script src="../../javascript/back/accueil_admin.js" defer></script>
-    <script src="../../javascript/back/stats.js" defer></script>
+    <script src="../../js/front/navbar.js" defer></script>
+    <script src="../../js/back/accueil_admin.js" defer></script>
+    <script src="../../js/back/stats.js" defer></script>
 
   </head>
   <body>

@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="../../css/front/index.css" />
     <link rel="stylesheet" href="../../css/front/details.css" />
 
-    <script src="../../javascript/front/navbar.js" defer></script>
-    <script src="../../javascript/front/details.js" defer></script>
+    <script src="../../js/front/navbar.js" defer></script>
+    <script src="../../js/front/details.js" defer></script>
   </head>
   <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">

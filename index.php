@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/front/navbar.css" />
     <link rel="stylesheet" href="css/front/footer.css" />
 
-    <script src="javascript/front/navbar.js" defer></script>
+    <script src="js/front/navbar.js" defer></script>
   </head>
   <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -87,6 +87,6 @@
       </div>
     </footer>
 
-    <script src="javascript/front/accueil.js"></script>
+    <script src="js/front/accueil.js"></script>
   </body>
 </html>

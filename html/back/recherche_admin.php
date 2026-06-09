@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="../../css/back/modifications.css" />
     <link rel="stylesheet" href="../../css/back/navbar_admin.css" />
     <link rel="stylesheet" href="../../css/back/footer_admin.css" />
-    <script src="../../javascript/front/navbar.js" defer></script>
-    <script src="../../javascript/back/recherche_admin.js" defer></script>
+    <script src="../../js/front/navbar.js" defer></script>
+    <script src="../../js/back/recherche_admin.js" defer></script>
   </head>
   <body>
     

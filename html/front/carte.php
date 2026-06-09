@@ -54,9 +54,9 @@ if (isset($conn) && $conn) {
     <link rel="stylesheet" href="../../css/front/navbar.css" />
     <link rel="stylesheet" href="../../css/front/footer.css" />
 
-    <script src="../../javascript/front/navbar.js" defer></script>
+    <script src="../../js/front/navbar.js" defer></script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="../../javascript/front/carte.js" defer></script>
+    <script src="../../js/front/carte.js" defer></script>
   </head>
   <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">

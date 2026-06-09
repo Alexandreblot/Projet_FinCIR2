@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="../../css/back/navbar_admin.css" />
     <link rel="stylesheet" href="../../css/back/footer_admin.css" />
     <link rel="stylesheet" href="../../css/back/modifications.css" />
-    <script src="../../javascript/front/navbar.js" defer></script>
-    <script src="../../javascript/back/creation.js" defer></script>
+    <script src="../../js/front/navbar.js" defer></script>
+    <script src="../../js/back/creation.js" defer></script>
   </head>
   <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">

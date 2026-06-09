@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="../../css/front/navbar.css" />
     <link rel="stylesheet" href="../../css/front/footer.css" />
 
-    <script src="../../javascript/front/navbar.js" defer></script>
-    <script src="../../javascript/front/recherche.js" defer></script>
+    <script src="../../js/front/navbar.js" defer></script>
+    <script src="../../js/front/recherche.js" defer></script>
   </head>
   <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
