@@ -3,31 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Zapkartenn - Recherche Admin</title>
+    <title>Zapkartenn - Détails de la Borne</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../../css/back/modifications.css" />
+    <link rel="stylesheet" href="../../css/front/details.css" />
     <link rel="stylesheet" href="../../css/front/navbar.css" />
     <link rel="stylesheet" href="../../css/front/footer.css" />
+    
     <script src="../../javascript/front/navbar.js" defer></script>
     <script src="../../javascript/front/recherche.js" defer></script>
   </head>
   <body>
-    
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a href="acceuil_admin.php">
+          <a href="../../index.php">
             <img src="../../image/logo_zapkartenn.png" alt="Logo" class="logo-icon" />
           </a>
         </div>
         <ul class="nav navbar-nav" id="menu">
-          <li><a href="creation.php" class="nav-btn1">Nouveau PDR</a></li>
-          <li><a href="recherche_admin.php" class="nav-btn1 active">Recherche</a></li>
-          <li>
-            <a href="../../index.php" class="nav-btn2">
-              <img src="../../image/avatar-de-connexion.png" class="Connexion" />Déconnexion
-            </a>
-          </td>
+          <li><a href="carte.php" class="nav-btn1">Carte</a></li>
+          <li><a href="recherche.php" class="nav-btn1">Recherche</a></li>
+          <li><a href="../back/acceuil_admin.php" class="nav-btn2">Connexion</a></li>
         </ul>
       </div>
     </nav>
@@ -74,7 +70,7 @@
             <th>Enseigne</th>
             <th>Adresse</th>
             <th>Ville</th>
-            <th class="text-center">Actions Administrateur</th>
+            <th class="text-center"> Details stations</th>
           </tr>
         </thead>
         <tbody id="corps-tableau">

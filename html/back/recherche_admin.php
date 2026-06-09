@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../../css/back/navbar_admin.css" />
     <link rel="stylesheet" href="../../css/back/footer_admin.css" />
     <script src="../../javascript/front/navbar.js" defer></script>
-    <script src="../../javascript/front/recherche.js" defer></script>
+    <script src="../../javascript/back/recherche_admin.js" defer></script>
   </head>
   <body>
     
